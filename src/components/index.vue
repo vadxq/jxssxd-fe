@@ -1,6 +1,6 @@
 <template>
   <section>
-    <Navbar />
+    <Navbar navText="首页" />
 
     <div>
       <b-carousel id="carousel-fade" style="text-shadow: 0px 0px 2px #000" fade indicators >

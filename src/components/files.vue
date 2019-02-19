@@ -1,6 +1,6 @@
 <template>
   <section>
-    <Navbar/>
+    <Navbar navText="资料"/>
   </section>
 </template>
 

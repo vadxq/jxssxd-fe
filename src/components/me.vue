@@ -1,6 +1,6 @@
 <template>
   <section>
-    <Navbar/>
+    <Navbar navText="个人中心"/>
   </section>
 </template>
 

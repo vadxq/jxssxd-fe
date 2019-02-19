@@ -30,21 +30,22 @@ export default {
   components: {
     Navbar
   },
+  props: ['navText'],
   data() {
     return {
-      navText: ""
+      
     };
   },
   mounted() {
-    console.log(this.$route.path)
-    switch (this.$route.path) {
-      case "/me":
-        this.navText = "个人中心";
-      case "/files":
-        this.navText = "资料";
-      default:
-        this.navText = "首页";
-    }
+    // console.log(this.$route.path)
+    // switch (this.$route.path) {
+    //   case "/me":
+    //     this.navText = "个人中心";
+    //   case "/files":
+    //     this.navText = "资料";
+    //   default:
+    //     this.navText = "首页";
+    // }
   }
 };
 </script>

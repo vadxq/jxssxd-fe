@@ -6,7 +6,9 @@
         class="d-inline-block align-top"
         alt="BV"
       >
-      江西少先队辅导员学习平台
+      <span>
+        江西少先队辅导员学习平台
+      </span>
     </b-navbar-brand>
     <b-navbar-nav class="ml-auto">
       <b-nav-item-dropdown :text="navText" right>
@@ -46,7 +48,7 @@ export default {
 .navbar {
   padding: 0.2rem 1rem;
 }
-.navbar-brand {
+.navbar-brand, .navbar-brand span{
   color: #fff;
   font-size: 1rem;
 }
@@ -56,9 +58,12 @@ export default {
 .navbar-nav,
 .nav-item-dropdown,
 .dropdown-item a {
-  color: #fff !important;
+  color: #fff;
 }
 .dropdown-item, .dropdown-menu-right {
   min-width: 5rem!important;
+}
+.router-link-exact-active {
+  color: rgb(231, 190, 188) !important;
 }
 </style>

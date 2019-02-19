@@ -72,7 +72,7 @@ section {
 }
 .nav-index {
   /* background-color: rgb(246, 41, 20); */
-  border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+  border-bottom: solid 1px rgba(0, 0, 0, 0.5);
 }
 .navbar-brand {
   color: #fff;
@@ -104,7 +104,7 @@ section {
   align-items: center;
   color: #fff;
   background-color: rgb(242,55,50);
-  box-shadow: 0px 0px 1.5px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 1.5px rgba(0,0,0,0.6);
   border-radius: 1.5vw;
 }
 

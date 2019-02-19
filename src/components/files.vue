@@ -1,7 +1,7 @@
 <template>
   <section>
     <Navbar navText="资料"/>
-    <router-view/>>
+    <router-view/>
     <Footer/>
   </section>
 </template>

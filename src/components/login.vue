@@ -1,0 +1,12 @@
+<template>
+  <b-container fluid>
+    <b-row class="my-1" v-for="type in types" :key="type">
+      <b-col sm="3">
+        <label :for="`type-${type}`">Type {{ type }}:</label>
+      </b-col>
+      <b-col sm="9">
+        <b-form-input :id="`type-${type}`" :type="type" />
+      </b-col>
+    </b-row>
+  </b-container>
+</template>

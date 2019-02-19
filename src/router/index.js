@@ -7,6 +7,7 @@ import filesIndex from '@/components/files/index'
 import xxzl from '@/components/files/xxzl'
 import whcp from '@/components/files/whcp'
 import sxdwj from '@/components/files/sxdwj'
+import login from '@/components/login'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
         path: 'whcp',
         component: whcp
       }]
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login
     }
   ]
 })

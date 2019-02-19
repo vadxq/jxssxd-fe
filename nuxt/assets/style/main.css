@@ -1,0 +1,14 @@
+.page-enter-active, .page-leave-active {
+  transition: opacity .3s;
+}
+.page-enter, .page-leave-active {
+  opacity: 0;
+}
+
+/* transition: 'test' */
+.test-enter-active, .test-leave-active {
+  transition: opacity .3s;
+}
+.test-enter, .test-leave-active {
+  opacity: 0;
+}

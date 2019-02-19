@@ -1,0 +1,183 @@
+body {
+	font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', '宋体', \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti;
+	padding-top: 50px;
+}
+.navbar {
+	background-color: #337ab7!important;
+}
+#navbar .nuxt-link-exact-active {
+  /* background-color: #025aa5; */
+  background-color: #286090!important;
+}
+.layout-active-link {
+  background-color: #025aa5;
+}
+/* f01 */
+#f01 {
+	padding: 25px 0px 10px 0;
+	color: #575757;
+}
+.panel {
+	border: 0px!important;
+}
+.login {
+	border: 1px #eeeeee solid!important;
+}
+/* f02 */
+#f02 {
+	padding: 30px 0px 15px 0;
+	background-color: #f2f2f2;
+	min-height: 100%;
+}
+#f03 {
+	padding: 30px 0px 0px 0;
+	background-color: #f2f2f2;
+}
+#f04 {
+	padding: 10px 0px 15px 0;
+	background-color: #f2f2f2;
+}
+.more a {
+	color: #d9534f;
+}
+.more a:hover {
+	color: #FF0000;
+	text-decoration: none;
+}
+.article {
+	padding: 10px 30px 30px 30px;
+}
+
+.text-f {
+	color: #bbbbbb;
+}
+.text-a {
+	padding-right: 10px;
+}
+
+@media (max-width: 767px) {
+  .article {
+    padding: 0px;
+  }
+  .article p {
+    font-size: 14px;
+  }
+  .article h2 {
+    font-size: 16px;
+  }
+  .article p img {
+    display: block;
+    max-width: 100%;
+    height: auto
+  }
+}
+
+.video{
+  margin-bottom: 20px;
+}
+
+video {
+	max-width: 100%;
+	vertical-align: middle!important;
+}
+
+/*
+ * Footer
+ */
+
+.footer {
+	color: #cbe3f7;
+	padding: 30px 0px 30px 0px;
+	background-color: #337ab7;
+	border-bottom: 1px #286090 solid;
+}
+.copyright {
+	color: #ffffff;
+	padding: 12px 0px 8px 0px;
+	background-color: #337ab7;
+	border-top: 1px #4393d7 solid;
+}
+.footer a {
+	color: #cbe3f7;
+}
+.footer a:hover {
+	color: #ffffff;
+	text-decoration: none;
+}
+p.line {
+	border-bottom: 1px #eeeeee solid;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.pople {
+	padding-top: 30px;
+	font-size: 16px;
+}
+
+.col-md-offset-3{
+  margin-bottom: 10px;
+}
+
+.video{
+  margin-bottom: 20px;
+}
+
+.xxfw{
+  padding: 15px 0px;
+}
+
+.boder-right{
+  border-right: #889eaf 1px dotted;
+}
+.boder-left{
+  border-left: #889eaf 1px dotted;
+}
+
+.text-c p {
+  text-indent: 2em;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+@media (max-width:1023px) {
+  .footer{ display: none;
+  }
+	.copyright {
+    border: 0px;
+  }
+  .text-c p {
+    text-indent: 0em;
+  }
+  .text-c p p{
+    text-indent: 0em;
+  }
+}
+.links a {
+  padding-right: 10px;
+  color: #333333;
+  line-height: 30px;
+}
+[title='站长统计'] {
+  display: none;
+  opacity: 0;
+}
+
+.tools-message {
+  position: fixed;
+  z-index: 10000;
+  top: 9px;
+  right: 9px;
+  max-width: 350px;
+}
+
+/* html{
+filter: grayscale(100%);
+-webkit-filter: grayscale(100%);
+-moz-filter: grayscale(100%);
+-ms-filter: grayscale(100%);
+-o-filter: grayscale(100%);
+filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+} */

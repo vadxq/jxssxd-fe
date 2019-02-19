@@ -1,6 +1,6 @@
 <template>
   <footer>
-      @江西省少工委
+      @ 江西省少工委出品
     </footer>
 </template>
 
@@ -10,6 +10,6 @@ footer {
   width: 100vw;
   font-size: 0.8rem;
   line-height: 2rem;
-  color: rgba(255, 255, 255, 0.7)
+  color: rgba(255, 255, 255, 0.7);
 }
 </style>

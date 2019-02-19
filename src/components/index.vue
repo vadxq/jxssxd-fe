@@ -3,8 +3,8 @@
     <Navbar navText="首页" />
 
     <div>
-      <b-carousel id="carousel-fade" style="text-shadow: 0px 0px 2px #000" fade indicators >
-        <b-carousel-slide caption="First slide" img-src="https://picsum.photos/1024/480/?image=10"/>
+      <b-carousel id="carousel-fade" style="text-shadow: 0px 0px 2px #000" fade  >
+        <b-carousel-slide  img-src="./static/bg.png"/>
         <!-- <b-carousel-slide caption="Second Slide" img-src="https://picsum.photos/1024/480/?image=12"/> -->
         <!-- <b-carousel-slide caption="Third Slide" img-src="https://picsum.photos/1024/480/?image=22"/> -->
       </b-carousel>
@@ -51,19 +51,18 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar';
+import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 export default {
   components: {
     Navbar,
     Footer
   },
-  data() {
+  data () {
     return {
-      navText: "首页"
-    };
+    }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -90,7 +89,6 @@ section {
 .dropdown-menu {
   min-width: 0;
 }
-
 
 .col-6 {
   height: 35vw;

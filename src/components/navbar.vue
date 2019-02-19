@@ -2,7 +2,7 @@
   <b-navbar class="nav-index">
     <b-navbar-brand href="#">
       <img
-        src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=4159524658,2161957590&fm=179&app=42&f=JPEG?w=121&h=140"
+        src="../assets/logo.png"
         class="d-inline-block align-top"
         alt="BV"
       >
@@ -25,29 +25,17 @@
 </template>
 
 <script>
-import Navbar from "@/components/navbar";
+import Navbar from '@/components/navbar'
 export default {
   components: {
     Navbar
   },
   props: ['navText'],
-  data() {
+  data () {
     return {
-      
-    };
-  },
-  mounted() {
-    // console.log(this.$route.path)
-    // switch (this.$route.path) {
-    //   case "/me":
-    //     this.navText = "个人中心";
-    //   case "/files":
-    //     this.navText = "资料";
-    //   default:
-    //     this.navText = "首页";
-    // }
+    }
   }
-};
+}
 </script>
 
 <style scoped>

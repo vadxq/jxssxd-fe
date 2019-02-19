@@ -20,20 +20,20 @@
           </router-link>
         </b-col>
         <b-col cols="6">
-          <router-link to="/">
+          <a target='_blank' href="http://www.jxyouth.org.cn/twgbw/snb/">
             <div>
               阵地建设
             </div>
-          </router-link>
+          </a>
         </b-col>
       </b-row>
       <b-row align-v="center" align-h="center">
         <b-col cols="6">
-          <router-link to="/">
+          <a  target='_blank' href="http://hdk.k618.cn/'">
             <div>
               课程建设
             </div>
-          </router-link>
+          </a>
         </b-col>
         <b-col cols="6">
           <router-link to="/">
@@ -44,14 +44,19 @@
         </b-col>
       </b-row>
     </b-container>
+    <div class="footer-box">
+      <Footer/>
+    </div>
   </section>
 </template>
 
 <script>
-import Navbar from '@/components/navbar'
+import Navbar from '@/components/navbar';
+import Footer from '@/components/footer'
 export default {
   components: {
-    Navbar
+    Navbar,
+    Footer
   },
   data() {
     return {
@@ -62,6 +67,10 @@ export default {
 </script>
 
 <style scoped>
+section {
+  overflow: hidden;
+  height: 100vh;
+}
 .nav-index {
   /* background-color: rgb(246, 41, 20); */
   border-bottom: solid 1px rgba(0, 0, 0, 0.3);
@@ -82,9 +91,7 @@ export default {
   min-width: 0;
 }
 
-.container-fluid {
-  padding: 0;
-}
+
 .col-6 {
   height: 35vw;
   display: flex;
@@ -93,13 +100,18 @@ export default {
 }
 .col-6 a {
   display: inline-flex;
-  width: 35vw;
-  height: 20vw;
+  width: 39vw;
+  height: 24vw;
   justify-content: center;
   align-items: center;
   color: #fff;
   background-color: rgb(242,55,50);
   box-shadow: 0px 0px 1.5px rgba(0,0,0,0.5);
   border-radius: 1.5vw;
+}
+
+.footer-box {
+  position: absolute;
+  bottom: 0.1rem;
 }
 </style>

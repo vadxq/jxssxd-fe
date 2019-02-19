@@ -16,7 +16,6 @@ export default {
   padding-left: 0px;
   background-color: rgb(246, 41, 20);
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
 }
 </style>

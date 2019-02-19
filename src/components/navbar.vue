@@ -55,6 +55,9 @@ export default {
   /* background-color: rgb(246, 41, 20); */
   border-bottom: solid 1px rgba(0, 0, 0, 0.3);
 }
+.navbar {
+  padding: 0.2rem 1rem;
+}
 .navbar-brand {
   color: #fff;
   font-size: 1rem;
@@ -67,7 +70,7 @@ export default {
 .dropdown-item a {
   color: #fff !important;
 }
-.dropdown-menu {
-  min-width: 0;
+.dropdown-item, .dropdown-menu-right {
+  min-width: 5rem!important;
 }
 </style>

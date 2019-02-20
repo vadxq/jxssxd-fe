@@ -8,6 +8,8 @@ import xxzl from '@/components/files/xxzl'
 import whcp from '@/components/files/whcp'
 import sxdwj from '@/components/files/sxdwj'
 import login from '@/components/login'
+import meIndex from '@/components/me/index'
+import jianjie from '@/components/me/jianjie'
 
 Vue.use(Router)
 
@@ -17,11 +19,6 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: Index
-    },
-    {
-      path: '/me',
-      name: 'me',
-      component: me
     },
     {
       path: '/files',
@@ -48,6 +45,18 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/me',
+      name: 'me',
+      component: me,
+      children: [{
+        path: '/',
+        component: meIndex
+      }, {
+        path: 'jianjie',
+        component: jianjie
+      }]
     }
   ]
 })

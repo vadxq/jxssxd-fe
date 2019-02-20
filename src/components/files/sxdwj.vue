@@ -127,7 +127,7 @@ export default {
   background-color: #fff;
   /* width: 100vw; */
   padding-left: 0.5rem;
-  height: 13vw;
+  height: 2.8rem;
   display: flex;
   align-items: center;
   border-bottom: solid 1.4px rgba(0, 0, 0, 0.4);

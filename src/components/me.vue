@@ -1,6 +1,9 @@
 <template>
   <section>
     <Navbar navText="个人中心"/>
+    <b-container fluid>
+
+    </b-container>
   </section>
 </template>
 
@@ -16,3 +19,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+</style>

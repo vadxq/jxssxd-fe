@@ -52,8 +52,13 @@ export default {
   color: #fff;
   font-size: 1rem;
 }
+.navbar-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .navbar-brand img {
-  width: 5vw;
+  width: 1.3rem;
 }
 .navbar-nav,
 .nav-item-dropdown,

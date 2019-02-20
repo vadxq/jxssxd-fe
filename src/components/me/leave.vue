@@ -8,26 +8,46 @@
         </router-link>
         <span> /</span>
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACpSURBVEhL7ZaxDcIwEEU9AYyAYB2YIFOwAS0dsAbjsANKywbwfnESkYx8Z6dAip/0uty9pEjitFh2eMO7wyM2scYR3wFPWM0BbVHuib59YXN0QFtS4oF2bXW0JSjD0dagDEXnCEp3dK6g3GORSFDv4DmjzWtXkUjwFz04oQc99OCEHvTw30F94W0gd6zwaPOuv4UOUU+0oVq1Y4UutnjF3N17vOAGF0dKH0m8s/eBg8ijAAAAAElFTkSuQmCC">
-          <span>平台简介</span>
+          <span>互动留言</span>
       </div>
-      <div class="info">
-        <b-row class="info-title">
-          <div>江西省少工委官方微信</div>
-        </b-row>
-        <b-row class="info-img">
-          <div><img src="" alt="">微信图片</div>
-        </b-row>
-        <b-row class="info-footer">
-          <div>江西省少工委官方QQ群：187122274</div>
-        </b-row>
+    </b-container>
+    <b-container class="leave-con">
+      <b-row class="my-1">
+        <b-col sm="2">
+          <label for="input-small">标题：</label>
+        </b-col>
+        <b-col sm="10">
+          <b-form-input id="input-small" size="sm" type="text" placeholder="输入要留言的标题" />
+        </b-col>
+      </b-row>
 
-      </div>
+      <b-row class="my-1">
+        <b-col sm="2">
+          <label for="input-default">留言内容：</label>
+        </b-col>
+        <b-col sm="10">
+          <b-form-textarea id="textarea1" v-model="text" placeholder="输入要留言的具体内容" rows="5" />
+          <pre class="mt-3">{{ text }}</pre>
+        </b-col>
+      </b-row>
     </b-container>
   </section>
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      content: '',
+      title: ''
+    }
+  },
+  methods: {
+    postCid (e) {
+      this.content = e.content
+      this.title = e.title
+    }
+  }
 }
 </script>
 
@@ -59,17 +79,8 @@ export default {
   display: inline-flex;
   margin-left: 0.4rem;
 }
-
-.row {
-  margin-left: 0;
-  margin-top: 1rem;
+.leave-con {
   color: #fff;
-}
-.info {
-  margin-left: 7vw;
-  margin-top: 2rem;
-}
-.info-footer {
-  margin-top: 2.5rem;
+  margin-top: 1rem;
 }
 </style>

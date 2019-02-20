@@ -22,4 +22,8 @@ export default {
 </script>
 
 <style scoped>
+footer {
+  position: absolute;
+  bottom: 0.5rem;
+}
 </style>

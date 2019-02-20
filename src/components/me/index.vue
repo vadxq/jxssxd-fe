@@ -78,4 +78,7 @@ a {
 .col-10 {
   margin-left: -2.5rem;
 }
+.row {
+  margin-right: 0;
+}
 </style>

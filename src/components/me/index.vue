@@ -3,19 +3,19 @@
     <b-container fluid>
       <b-row class="infos">
         <b-col cols="1"></b-col>
-        <b-col cols="2"><img src="https://github.com/fluidicon.png"></b-col>
+        <b-col cols="2"><img src="/static/logo.png"></b-col>
         <b-col ><router-link to="/login">登录 / 注册</router-link></b-col>
       </b-row>
+      <b-row class="buttons" v-if="isLogin">
+        <b-col cols="2"><img src="/static/logo.png"></b-col>
+        <b-col cols="10"><router-link to="/me/change">个人信息</router-link></b-col>
+      </b-row>
       <b-row class="buttons">
-        <b-col cols="2"><img src="https://github.com/fluidicon.png"></b-col>
+        <b-col cols="2"><img src="/static/logo.png"></b-col>
         <b-col cols="10"><router-link to="/me/jianjie">平台简介</router-link></b-col>
       </b-row>
-      <b-row class="buttons" v-if="isLogin">
-        <b-col cols="2"><img src="https://github.com/fluidicon.png"></b-col>
-        <b-col cols="10"><router-link to="/me/change">个人信息修改</router-link></b-col>
-      </b-row>
       <b-row class="buttons">
-        <b-col cols="2"><img src="https://github.com/fluidicon.png"></b-col>
+        <b-col cols="2"><img src="/static/logo.png"></b-col>
         <b-col cols="10"><router-link to="/me/leave">互动留言</router-link></b-col>
       </b-row>
     </b-container>
@@ -30,7 +30,7 @@ export default {
   },
   data () {
     return {
-      isLogin: false
+      isLogin: true
     }
   }
 }
@@ -45,7 +45,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 4.5rem;
+  padding: 1.2rem 0;
   border-bottom: 1px dotted #fff;
 }
 
@@ -63,7 +63,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3rem;
+  padding: 0.8rem 0;
   border-bottom: 1px solid #fff;
 }
 .col-2{

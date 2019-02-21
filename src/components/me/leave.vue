@@ -17,7 +17,7 @@
           <label for="input-small">标题：</label>
         </b-col>
         <b-col sm="10">
-          <b-form-input id="input-small" size="sm" type="text" placeholder="输入要留言的标题" />
+          <b-form-input v-model="title" id="input-small" size="sm" type="text" placeholder="输入要留言的标题" />
         </b-col>
       </b-row>
 
@@ -26,8 +26,17 @@
           <label for="input-default">留言内容：</label>
         </b-col>
         <b-col sm="10">
-          <b-form-textarea id="textarea1" v-model="text" placeholder="输入要留言的具体内容" rows="5" />
-          <pre class="mt-3">{{ text }}</pre>
+          <b-form-textarea id="textarea1" v-model="content" placeholder="输入要留言的具体内容" rows="5" />
+          <pre class="mt-3">{{ content }}</pre>
+        </b-col>
+      </b-row>
+
+      <b-alert :show="dismissCountDown" dismissible variant="warning" @dismissed="dismissCountDown=0" @dismiss-count-down="countDownChanged" >
+        {{ errMsg }} --{{ dismissCountDown }}
+      </b-alert>
+      <b-row class="my-1">
+        <b-col sm="10">
+          <b-button @click="pushLeave()" variant="dark">提交</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -39,13 +48,24 @@ export default {
   data () {
     return {
       content: '',
-      title: ''
+      title: '',
+      dismissSecs: 5,
+      dismissCountDown: 0,
+      errMsg: ''
     }
   },
   methods: {
-    postCid (e) {
-      this.content = e.content
-      this.title = e.title
+    pushLeave() {
+      if (!this.content || !this.title) {
+        this.showAlert('请填写完整！')
+      }
+    },
+    countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown
+    },
+    showAlert(e) {
+      this.dismissCountDown = this.dismissSecs
+      this.errMsg = e
     }
   }
 }

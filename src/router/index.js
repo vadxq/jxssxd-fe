@@ -11,6 +11,7 @@ import login from '@/components/login'
 import meIndex from '@/components/me/index'
 import jianjie from '@/components/me/jianjie'
 import leave from '@/components/me/leave'
+import change from '@/components/me/change'
 
 Vue.use(Router)
 
@@ -60,6 +61,9 @@ export default new Router({
       }, {
         path: 'leave',
         component: leave
+      }, {
+        path: 'change',
+        component: change
       }]
     }
   ]

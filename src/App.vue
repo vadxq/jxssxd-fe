@@ -18,4 +18,7 @@ export default {
   width: 100vw;
   min-height: 100vh;
 }
+.gonggao .close {
+  padding: 0.2rem 1.25rem;
+}
 </style>

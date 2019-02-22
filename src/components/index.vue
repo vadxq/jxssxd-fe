@@ -2,12 +2,19 @@
   <section>
     <Navbar navText="首页" />
 
-    <div>
+    <div class="ggdiv">
       <b-carousel id="carousel-fade" style="text-shadow: 0px 0px 2px #000" fade  >
         <b-carousel-slide  img-src="./static/bg.png"/>
         <!-- <b-carousel-slide caption="Second Slide" img-src="https://picsum.photos/1024/480/?image=12"/> -->
         <!-- <b-carousel-slide caption="Third Slide" img-src="https://picsum.photos/1024/480/?image=22"/> -->
       </b-carousel>
+      <div class="gonggao" >
+          <b-alert show dismissible>
+            <!-- <button type="button" aria-label="Close" class="close">×</button> -->
+            <img src="../assets/gantan.png" > 有新的公告！ <router-link to="/notice">查看详情</router-link>
+            <!-- <b>&#9993;</b> <b>&rArr;</b> -->
+          </b-alert>
+      </div>
     </div>
 
     <b-container fluid  class="bv-example-row  text-center">
@@ -35,8 +42,8 @@
             </div>
           </a>
         </b-col>
-        <b-col cols="6">
-          <router-link to="/">
+        <b-col cols="6" >
+          <router-link v-b-modal.modal-tshd to="/">
             <div>
               特色活动
             </div>
@@ -44,6 +51,9 @@
         </b-col>
       </b-row>
     </b-container>
+    <b-modal id="modal-tshd" title="特色活动" ok-only ok-title="期待">
+      <P>正在开发中，敬请期待</P>
+    </b-modal>
     <div class="footer-box">
       <Footer/>
     </div>
@@ -111,5 +121,23 @@ section {
 .footer-box {
   position: absolute;
   bottom: 0.1rem;
+}
+.ggdiv {
+  position: relative;
+}
+.gonggao {
+  position: absolute;
+  bottom: 0rem;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.alert {
+  width: 90%;
+  padding: 0.2rem 1.25rem;
+    margin-bottom: 0.3rem;
+  /* height: 3rem; */
 }
 </style>

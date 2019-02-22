@@ -9,79 +9,54 @@
         </router-link>
         <span> /</span>
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACpSURBVEhL7ZaxDcIwEEU9AYyAYB2YIFOwAS0dsAbjsANKywbwfnESkYx8Z6dAip/0uty9pEjitFh2eMO7wyM2scYR3wFPWM0BbVHuib59YXN0QFtS4oF2bXW0JSjD0dagDEXnCEp3dK6g3GORSFDv4DmjzWtXkUjwFz04oQc99OCEHvTw30F94W0gd6zwaPOuv4UOUU+0oVq1Y4UutnjF3N17vOAGF0dKH0m8s/eBg8ijAAAAAElFTkSuQmCC">
-          <span>风采大赛</span>
+          <span>公告</span>
       </div>
       <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in whcpList" :cid="item.id">
         {{item.title}}
       </div>
     </b-container>
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
-      <div v-if="type==='pdf'">
-        <pdf src="../assets/sample.pdf"></pdf>
-      </div>
-      <div v-if="type==='bzhan'">
-        <b-embed
-          type="iframe"
-          aspect="16by9"
-          src="//player.bilibili.com/player.html?aid=44211901&cid=77441895&page=1"
-          allowfullscreen
-        />
-      </div>
-      <div v-if="type==='mp4'">
-        <b-embed
-          type="iframe"
-          aspect="16by9"
-          src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-          allowfullscreen
-        />
-      </div>
+      {{content}}
     </b-modal>
     <Footer/>
   </section>
 </template>
 
 <script>
-import pdf from 'vue-pdf'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 export default {
   components: {
     Navbar,
-    Footer,
-    pdf
+    Footer
   },
   data () {
     return {
       whcpList: [
         {
           id: 111,
-          title: 'pdf实例（pptz转pdf实现）',
-          content: 'https://www.phoca.cz/demo/phocadownload/phocapdf-demo.pdf',
-          type: 'pdf'
+          title: 'sfhjashdksadjhasjd',
+          content: '111'
         },
         {
           id: 222,
-          title: '视频实例（B站视频实例）',
-          content: '<iframe src="//player.bilibili.com/player.html?aid=44211901&cid=77441895&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
-          type: 'bzhan'
+          title: 'sfhjashdksadjhasjd',
+          content: '111222'
         },
         {
           id: 333,
-          title: '视频实例（自身视频）',
-          content: 'http://www.w3school.com.cn/i/movie.mp4',
-          type: 'mp4'
+          title: 'sfhjashdksadjhasjd',
+          content: '111222333'
         }
       ],
       content: '',
-      title: '',
-      type: ''
+      title: ''
     }
   },
   methods: {
     postCid (e) {
       this.content = e.content
       this.title = e.title
-      this.type = e.type
     }
   }
 }
@@ -135,7 +110,4 @@ export default {
   display: inline-flex;
   margin-left: 0.4rem;
 }
-/* .modal-scrollable div {
-  width: 100%;
-} */
 </style>

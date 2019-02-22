@@ -12,6 +12,8 @@ import meIndex from '@/components/me/index'
 import jianjie from '@/components/me/jianjie'
 import leave from '@/components/me/leave'
 import change from '@/components/me/change'
+import notice from '@/components/notice'
+import race from '@/components/race'
 
 Vue.use(Router)
 
@@ -63,6 +65,14 @@ export default new Router({
         path: 'change',
         component: change
       }]
+    },
+    {
+      path: '/notice',
+      component: notice
+    },
+    {
+      path: '/race',
+      component: race
     }
   ]
 })

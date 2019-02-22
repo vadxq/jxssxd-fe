@@ -13,6 +13,7 @@
     <b-navbar-nav class="ml-auto">
       <b-nav-item-dropdown :text="navText" right>
         <router-link class="dropdown-item" to="/">首页</router-link>
+        <router-link class="dropdown-item" to="/notice">公告</router-link>
         <router-link class="dropdown-item" to="/files">资料</router-link>
         <router-link class="dropdown-item" to="/me">个人中心</router-link>
       </b-nav-item-dropdown>

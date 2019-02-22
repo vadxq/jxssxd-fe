@@ -55,15 +55,15 @@ export default {
     }
   },
   methods: {
-    pushLeave() {
+    pushLeave () {
       if (!this.content || !this.title) {
         this.showAlert('请填写完整！')
       }
     },
-    countDownChanged(dismissCountDown) {
+    countDownChanged (dismissCountDown) {
       this.dismissCountDown = dismissCountDown
     },
-    showAlert(e) {
+    showAlert (e) {
       this.dismissCountDown = this.dismissSecs
       this.errMsg = e
     }

@@ -13,7 +13,7 @@
     <b-container fluid  class="bv-example-row  text-center">
       <b-row align-v="center" align-h="center">
         <b-col cols="6">
-          <router-link to="/">
+          <router-link to="/race">
             <div>
               风采大赛
             </div>
@@ -29,7 +29,7 @@
       </b-row>
       <b-row align-v="center" align-h="center">
         <b-col cols="6">
-          <a  target='_blank' href="http://hdk.k618.cn/'">
+          <a  target='_blank' href="http://hdk.k618.cn/">
             <div>
               课程建设
             </div>

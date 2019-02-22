@@ -12,15 +12,9 @@
     </b-navbar-brand>
     <b-navbar-nav class="ml-auto">
       <b-nav-item-dropdown :text="navText" right>
-        <b-dropdown-item>
-          <router-link to="/">首页</router-link>
-        </b-dropdown-item>
-        <b-dropdown-item>
-          <router-link to="/files">资料</router-link>
-        </b-dropdown-item>
-        <b-dropdown-item>
-          <router-link to="/me">个人中心</router-link>
-        </b-dropdown-item>
+        <router-link class="dropdown-item" to="/">首页</router-link>
+        <router-link class="dropdown-item" to="/files">资料</router-link>
+        <router-link class="dropdown-item" to="/me">个人中心</router-link>
       </b-nav-item-dropdown>
     </b-navbar-nav>
   </b-navbar>
@@ -62,7 +56,7 @@ export default {
 }
 .navbar-nav,
 .nav-item-dropdown,
-.dropdown-item a {
+.dropdown-item  {
   color: #fff;
 }
 .dropdown-item, .dropdown-menu-right {

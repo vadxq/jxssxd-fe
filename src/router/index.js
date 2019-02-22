@@ -24,7 +24,6 @@ export default new Router({
     },
     {
       path: '/files',
-      name: 'files',
       component: files,
       children: [{
         path: '/',
@@ -50,7 +49,6 @@ export default new Router({
     },
     {
       path: '/me',
-      name: 'me',
       component: me,
       children: [{
         path: '/',

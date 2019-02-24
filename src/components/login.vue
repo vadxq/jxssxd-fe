@@ -14,12 +14,10 @@
             aria-describedby="userNameFeedback"
             placeholder="请输入手机号"
           />
-
           <p v-show="!usernameState" id="userNameFeedback" class="feedBackP">
             请输入11位数字哟~
           </p>
         </div>
-
         <div>
           <!-- <label for="passWord">密码：</label> -->
           <b-form-input
@@ -27,16 +25,15 @@
             v-model="password"
             trim
             type="password"
+            @blur="getPassState()"
             :state="passState"
             aria-describedby="passWordFeedback"
             placeholder="请输入密码"
           />
-
-          <p v-show="passState" id="passWordFeedback" class="feedBackP">
+          <p v-show="!passState" id="passWordFeedback" class="feedBackP">
             不能为空哟~
           </p>
         </div>
-
         <div v-if="regIsTrue" >
           <!-- <label for="nameWord">姓名：</label> -->
           <b-form-input
@@ -48,12 +45,10 @@
             aria-describedby="nameWordFeedback"
             placeholder="请输入姓名"
           />
-
-          <p v-show="nameState" id="nameWordFeedback" class="feedBackP">
+          <p v-show="!nameState" id="nameWordFeedback" class="feedBackP">
             不能为空哟~
           </p>
         </div>
-
         <div v-if="regIsTrue" class="veryCode">
           <!-- <label for="varyWord">验证码：</label> -->
           <div class="codeVery">
@@ -66,21 +61,16 @@
             aria-describedby="varyWordFeedback"
             placeholder="请输入验证码"
           />
-
-            <b-button @click="sendCode()" v-if="!isSendCode" for="varyWord" variant="danger" >验证码</b-button>
-            <b-button v-if="isSendCode" for="varyWord" disabled >{{countdown}}</b-button>
+            <b-button @click="sendCode()" v-show="!isSendCode" for="varyWord" variant="danger" >验证码</b-button>
+            <b-button v-show="isSendCode" for="varyWord" disabled >aa{{ codeState }}</b-button>
           </div>
-          
-
-          <p v-show="verycodeState" id="varyWordFeedback" class="feedBackP">
+          <p v-show="!verycodeState" id="varyWordFeedback" class="feedBackP">
             不能为空哟~
           </p>
         </div>
-
         <div v-if="!regIsTrue" class="wjmmQ">
           <span>忘记密码</span>
         </div>
-
         <div>
           <b-button v-if="!regIsTrue" block variant="success">登录</b-button>
           <b-button @click="regTrue()" block variant="secondary">注册</b-button>
@@ -111,24 +101,26 @@ export default {
       regIsTrue: true,
       nameword: '',
       verycode: '',
-      countdown: 59,
+      countdown: 0,
       isSendCode: false
     }
   },
   computed: {
-    nameState() {
-      return this.nameword.length === '' ? true : false
+    nameState () {
+      return this.nameword.length !== 0 ? true : false
     },
-    usernameState() {
+    passState () {
+      return this.password.length !== 0 ? true : false
+    },
+    usernameState () {
       return this.username.length === 11 ? true : false
     },
-    passState() {
-      return this.password.length === '' ? true : false
+    verycodeState () {
+      return this.verycode.length !== 0 ? true : false
     },
-    verycodeState() {
-      return this.verycode.length === '' ? true : false
+    codeState () {
+      return this.countdown
     }
-   
   },
   methods: {
     postCid (e) {
@@ -144,17 +136,22 @@ export default {
       }
     },
     sendCode () {
-      if (this.sendCode === false && this.countdown <= 0) {
+      console.log('111')
+      if (this.isSendCode === false && this.countdown <= 0) {
+        console.log('222')
         this.isSendCode = true
         this.countdown = 59
         this.listenCode()
       }
     },
-    listenCode () {
-      for (let i = 59;i>0;i--) {
+    async listenCode () {
+      console.log('333')
+      for (let i = 1; i <= 59; i++) {
+        console.log('444')
         setTimeout(() => {
           this.countdown -= 1
-        }, 1000)
+          console.log(this.countdown)
+        }, i * 1000)
       }
       this.isSendCode = false
     }
@@ -205,6 +202,7 @@ export default {
 
 .formgroup:last-child div {
   margin-top: 0;
+  height: auto;
 }
 
 .formgroup input {
@@ -222,6 +220,9 @@ export default {
 }
 .wjmmQ {
   height: 2.5rem!important;
+}
+.wjmmQ span {
+  float: left;
 }
 .veryCode {
   width: 60vw;

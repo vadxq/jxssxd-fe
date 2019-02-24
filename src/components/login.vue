@@ -61,8 +61,8 @@
             aria-describedby="varyWordFeedback"
             placeholder="请输入验证码"
           />
-            <b-button @click="sendCode()" v-show="!isSendCode" for="varyWord" variant="danger" >验证码</b-button>
-            <b-button v-show="isSendCode" for="varyWord" disabled >aa{{ codeState }}</b-button>
+            <b-button @click="sendCode()" v-show="!isSendCode"  for="varyWord" variant="danger" >验证码</b-button>
+            <b-button v-show="isSendCode"  for="varyWord" disabled >{{ codeState }}S</b-button>
           </div>
           <p v-show="!verycodeState" id="varyWordFeedback" class="feedBackP">
             不能为空哟~
@@ -72,7 +72,7 @@
           <span>忘记密码</span>
         </div>
         <div>
-          <b-button v-if="!regIsTrue" block variant="success">登录</b-button>
+          <b-button @click="login()" v-if="!regIsTrue" block variant="success">登录</b-button>
           <b-button @click="regTrue()" block variant="secondary">注册</b-button>
         </div>
       </div>
@@ -98,7 +98,7 @@ export default {
       title: '',
       username: '',
       password: '',
-      regIsTrue: true,
+      regIsTrue: false,
       nameword: '',
       verycode: '',
       countdown: 0,
@@ -130,7 +130,11 @@ export default {
     regTrue () {
       if (this.regIsTrue) {
         // ajax
-        this.regIsTrue = false
+        if (this.username && this.password && this.nameword && this.verycode) {
+          this.$router.push('/me?username=111111&name=张三&part=少年部&zw=部委')
+        } else {
+          this.regIsTrue = false
+        }
       } else {
         this.regIsTrue = true
       }
@@ -139,13 +143,13 @@ export default {
       console.log('111')
       if (this.isSendCode === false && this.countdown <= 0) {
         console.log('222')
-        this.isSendCode = true
-        this.countdown = 59
         this.listenCode()
       }
     },
     async listenCode () {
       console.log('333')
+      this.isSendCode = true
+      this.countdown = 59
       for (let i = 1; i <= 59; i++) {
         console.log('444')
         setTimeout(() => {
@@ -153,7 +157,10 @@ export default {
           console.log(this.countdown)
         }, i * 1000)
       }
-      this.isSendCode = false
+      if (this.countdown === 0) this.isSendCode = false
+    },
+    login () {
+      this.$router.push('/me?username=111111&name=张三&part=少年部&zw=部委')
     }
   }
 }
@@ -202,7 +209,7 @@ export default {
 
 .formgroup:last-child div {
   margin-top: 0;
-  height: auto;
+  /* height: auto; */
 }
 
 .formgroup input {
@@ -220,9 +227,11 @@ export default {
 }
 .wjmmQ {
   height: 2.5rem!important;
+  display: flex;
+  justify-content: flex-end;
 }
 .wjmmQ span {
-  float: left;
+  display: inline-block;
 }
 .veryCode {
   width: 60vw;
@@ -234,7 +243,7 @@ export default {
 }
 .codeVery {
   display: flex;
-
+  height: auto!important;
 }
 .codeVery button{
   width: 20vw;

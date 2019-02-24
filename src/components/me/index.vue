@@ -4,7 +4,11 @@
       <b-row class="infos">
         <b-col cols="1"></b-col>
         <b-col cols="2"><img src="/static/logo.png"></b-col>
-        <b-col ><router-link to="/login">登录 / 注册</router-link></b-col>
+        <b-col v-if="!isLogin"><router-link to="/login">登录 / 注册</router-link></b-col>
+        <b-col class="detail" v-if="isLogin">
+          <h4>{{name}}</h4>
+          <h6>部门：{{part}}-{{zw}}</h6>
+        </b-col>
       </b-row>
       <b-row class="buttons" v-if="isLogin">
         <b-col cols="2"><img src="/static/logo.png"></b-col>
@@ -18,6 +22,9 @@
         <b-col cols="2"><img src="/static/logo.png"></b-col>
         <b-col cols="10"><router-link to="/me/leave">互动留言</router-link></b-col>
       </b-row>
+      <b-row v-if="isLogin" class="editLoginDiv">
+        <b-button @click="editLogin()" block variant="success">退出登录</b-button>
+      </b-row>
     </b-container>
   </section>
 </template>
@@ -30,7 +37,26 @@ export default {
   },
   data () {
     return {
-      isLogin: true
+      isLogin: false,
+      name: '',
+      part: '',
+      zw: ''
+    }
+  },
+  methods: {
+    editLogin () {
+      this.isLogin = false
+    }
+  },
+  created () {
+    if (this.$route.query) {
+      let data = this.$route.query
+      this.isLogin = true
+      this.name = data.name
+      this.part = data.part
+      this.zw = data.zw
+    } else {
+      this.isLogin = false
     }
   }
 }
@@ -40,6 +66,7 @@ export default {
 .container-fluid {
   padding-right: 0px;
   padding-left: 0px;
+  min-height: 86vh;
 }
 .infos {
   display: flex;
@@ -80,5 +107,20 @@ a {
 }
 .row {
   margin-right: 0;
+}
+.editLoginDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 34vh;
+}
+.editLoginDiv button {
+  width: 60vw;
+}
+.detail {
+  color: #fff;
+  max-height: 3.1rem;
+}
+.detail:first-child p{
+  font-size: 1.5rem;
 }
 </style>

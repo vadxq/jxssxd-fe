@@ -1,6 +1,6 @@
 <template>
   <section>
-    <Navbar navText="公告" />
+    <Navbar navText="风采大赛" />
     <b-container fluid class="files-container">
       <div class="sxd-nav">
         <router-link to="/">

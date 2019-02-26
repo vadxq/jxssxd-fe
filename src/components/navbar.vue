@@ -39,6 +39,8 @@ export default {
 .nav-index {
   /* background-color: rgb(246, 41, 20); */
   border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+  background-color: rgb(246, 41, 20);
+
 }
 .navbar {
   padding: 0.2rem 1rem;

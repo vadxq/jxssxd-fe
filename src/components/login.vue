@@ -107,15 +107,19 @@ export default {
   },
   computed: {
     nameState () {
+      // eslint-disable-next-line
       return this.nameword.length !== 0 ? true : false
     },
     passState () {
+      // eslint-disable-next-line
       return this.password.length !== 0 ? true : false
     },
     usernameState () {
+      // eslint-disable-next-line
       return this.username.length === 11 ? true : false
     },
     verycodeState () {
+      // eslint-disable-next-line
       return this.verycode.length !== 0 ? true : false
     },
     codeState () {

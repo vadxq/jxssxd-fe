@@ -14,7 +14,7 @@ export default {
 #app {
   padding-right: 0px;
   padding-left: 0px;
-  background-color: rgb(246, 41, 20);
+  /* background-color: rgb(246, 41, 20); */
   width: 100vw;
   min-height: 100vh;
 }

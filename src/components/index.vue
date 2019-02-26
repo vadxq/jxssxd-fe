@@ -79,6 +79,8 @@ export default {
 section {
   overflow: hidden;
   height: 100vh;
+  background-color: rgb(246, 41, 20);
+
 }
 .nav-index {
   /* background-color: rgb(246, 41, 20); */

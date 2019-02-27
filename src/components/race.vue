@@ -99,7 +99,8 @@ export default {
 .files-container {
   padding-right: 0px;
   padding-left: 0px;
-  background-color: rgb(246, 41, 20);
+  /* background-color: rgb(246, 41, 20); */
+  min-height: 87vh;
   width: 100vw;
 }
 .item:first-child {
@@ -138,4 +139,7 @@ export default {
 /* .modal-scrollable div {
   width: 100%;
 } */
+footer {
+  color: #000;
+}
 </style>

@@ -66,7 +66,8 @@ export default {
 .files-container {
   padding-right: 0px;
   padding-left: 0px;
-  background-color: rgb(246, 41, 20);
+  /* background-color: rgb(246, 41, 20); */
+  min-height: 87vh;
   width: 100vw;
 }
 .item:first-child {
@@ -93,7 +94,8 @@ export default {
   border-bottom: solid 1.4px rgba(0, 0, 0, 0.4);
 }
 .sxd-nav img {
-  margin: -0.3rem 0 0 0.3rem;
+  margin: 0.1rem 0 0 0.3rem;
+  width: 1.5rem;
 }
 .sxd-nav a {
   color: rgb(246, 41, 20);
@@ -101,5 +103,8 @@ export default {
 .sxd-nav span {
   display: inline-flex;
   margin-left: 0.4rem;
+}
+footer {
+  color: #000;
 }
 </style>

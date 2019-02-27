@@ -123,4 +123,7 @@ a {
 .detail:first-child p{
   font-size: 1.5rem;
 }
+footer {
+  color: #000;
+}
 </style>

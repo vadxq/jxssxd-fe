@@ -22,4 +22,7 @@ export default {
 </script>
 
 <style scoped>
+footer {
+  color: #000;
+}
 </style>

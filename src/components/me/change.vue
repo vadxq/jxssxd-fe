@@ -158,7 +158,8 @@ export default {
 .files-container {
   padding-right: 0px;
   padding-left: 0px;
-  background-color: rgb(246, 41, 20);
+  /* background-color: rgb(246, 41, 20); */
+  min-height: 87vh;
   width: 100vw;
 }
 
@@ -185,5 +186,8 @@ export default {
 .change-con {
   background-color: #fff;
   padding: 1.2rem 1rem;
+}
+footer {
+  color: #000;
 }
 </style>

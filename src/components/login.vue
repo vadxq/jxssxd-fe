@@ -175,7 +175,7 @@ export default {
 .files-container {
   padding-right: 0px;
   padding-left: 0px;
-  background-color: rgb(246, 41, 20);
+  /* background-color: rgb(246, 41, 20); */
   width: 100vw;
   color: #fff;
   min-height: 87vh;

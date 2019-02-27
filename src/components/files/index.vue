@@ -6,7 +6,7 @@
           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVEhL7ZYxDkBAEEX3Bq7gHOI6NGqhUTulqFwDfySbLDuENUszL3nFNv+Vs0ZRvqKCE1wuHGEKxcjhDLnYUdF4DbnImRRvblrCBLK0kAtIOUA2HjtMFtDDDUtjd/vtdUDDkmh4h4Yl0fCO38LuWeRO2xvtbgc9nnwEQqTtDLLc+fqESJu0rSixMWYFDF7P1diFKj4AAAAASUVORK5CYII=">
           <span> 江西少先队文件</span>
         </span>
-        <router-link to="/files/sxdwj">></router-link>
+        <router-link to="/files/sxdwj">更多&gt;</router-link>
       </div>
       <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in sxdwjList" :cid="item.id">
         {{item.title}}
@@ -19,7 +19,7 @@
           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVEhL7ZYxDkBAEEX3Bq7gHOI6NGqhUTulqFwDfySbLDuENUszL3nFNv+Vs0ZRvqKCE1wuHGEKxcjhDLnYUdF4DbnImRRvblrCBLK0kAtIOUA2HjtMFtDDDUtjd/vtdUDDkmh4h4Yl0fCO38LuWeRO2xvtbgc9nnwEQqTtDLLc+fqESJu0rSixMWYFDF7P1diFKj4AAAAASUVORK5CYII=">
           <span> 培训班学习资料</span>
         </span>
-        <router-link to="/files/xxzl">></router-link>
+        <router-link to="/files/xxzl">更多&gt;</router-link>
       </div>
       <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in xxzlList" :cid="item.id">
         {{item.title}}
@@ -32,7 +32,7 @@
           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVEhL7ZYxDkBAEEX3Bq7gHOI6NGqhUTulqFwDfySbLDuENUszL3nFNv+Vs0ZRvqKCE1wuHGEKxcjhDLnYUdF4DbnImRRvblrCBLK0kAtIOUA2HjtMFtDDDUtjd/vtdUDDkmh4h4Yl0fCO38LuWeRO2xvtbgc9nnwEQqTtDLLc+fqESJu0rSixMWYFDF7P1diFKj4AAAAASUVORK5CYII=">
           <span> 少先队文化产品</span>
         </span>
-        <router-link to="/files/whcp">></router-link>
+        <router-link to="/files/whcp">更多&gt;</router-link>
       </div>
       <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in whcpList" :cid="item.id">
         {{item.title}}
@@ -113,6 +113,9 @@ export default {
 </script>
 
 <style scoped>
+section {
+  min-height: 86vh;
+}
 .item {
   padding: 0.5rem 1.25rem;
   margin-bottom: -1px;
@@ -129,13 +132,17 @@ export default {
   border-top-right-radius: 0.5rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .item:first-child a {
   color: #000;
-  font-weight: bolder;
+  /* font-weight: bolder; */
   width: 3rem;
   text-align: center;
   margin-right: -1rem;
+}
+footer {
+  color: #000;
 }
 </style>

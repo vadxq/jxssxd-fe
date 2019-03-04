@@ -72,8 +72,9 @@
           <span>忘记密码</span>
         </div>
         <div>
-          <b-button @click="login()" v-if="!regIsTrue" block variant="success">登录</b-button>
+          <b-button @click="login()" v-if="!regIsTrue" block variant="outline-danger">登录</b-button>
           <b-button @click="regTrue()" block variant="secondary">注册</b-button>
+          <b-button v-if="regIsTrue" @click="regTrue()" block variant="outline-danger">返回登录</b-button>
         </div>
       </div>
     </b-container>
@@ -159,9 +160,11 @@ export default {
         setTimeout(() => {
           this.countdown -= 1
           console.log(this.countdown)
+          if (this.countdown === 0) {
+            this.isSendCode = false
+          }
         }, i * 1000)
       }
-      if (this.countdown === 0) this.isSendCode = false
     },
     login () {
       this.$router.push('/me?username=111111&name=张三&part=少年部&zw=部委')
@@ -177,7 +180,7 @@ export default {
   padding-left: 0px;
   /* background-color: rgb(246, 41, 20); */
   width: 100vw;
-  color: #fff;
+  /* color: #fff; */
   min-height: 87vh;
   align-items: center;
   justify-content: center;
@@ -248,6 +251,8 @@ export default {
 .codeVery {
   display: flex;
   height: auto!important;
+  border-top-left-radius: 0%;
+  border-bottom-left-radius: 0%;
 }
 .codeVery button{
   width: 20vw;

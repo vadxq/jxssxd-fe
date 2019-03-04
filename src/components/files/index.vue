@@ -114,7 +114,7 @@ export default {
 
 <style scoped>
 section {
-  min-height: 86vh;
+  min-height: 83vh;
 }
 .item {
   padding: 0.5rem 1.25rem;

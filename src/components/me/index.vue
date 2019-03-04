@@ -23,7 +23,7 @@
         <b-col cols="10"><router-link to="/me/leave">互动留言</router-link></b-col>
       </b-row>
       <b-row v-if="isLogin" class="editLoginDiv">
-        <b-button @click="editLogin()" block variant="success">退出登录</b-button>
+        <b-button @click="editLogin()" block variant="outline-danger">退出登录</b-button>
       </b-row>
     </b-container>
   </section>
@@ -46,10 +46,11 @@ export default {
   methods: {
     editLogin () {
       this.isLogin = false
+      this.$router.push('/me')
     }
   },
   created () {
-    if (this.$route.query) {
+    if (this.$route.query['name']) {
       let data = this.$route.query
       this.isLogin = true
       this.name = data.name
@@ -73,7 +74,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 1.2rem 0;
-  border-bottom: 1px dotted #fff;
+  border-bottom: 1px dotted grey;
 }
 
 .infos img{
@@ -81,7 +82,7 @@ export default {
   display: inline-flex;
 }
 a {
-  color: #fff;
+  color: #000;
 }
 .infos div a {
   font-size: 1.4rem;
@@ -91,7 +92,7 @@ a {
   justify-content: center;
   align-items: center;
   padding: 0.8rem 0;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid grey;
 }
 .col-2{
   display: flex;
@@ -117,7 +118,7 @@ a {
   width: 60vw;
 }
 .detail {
-  color: #fff;
+  /* color: #fff; */
   max-height: 3.1rem;
 }
 .detail:first-child p{

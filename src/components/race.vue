@@ -17,7 +17,11 @@
     </b-container>
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
       <div v-if="type==='pdf'">
-        <pdf src="../assets/sample.pdf"></pdf>
+        <!-- <pdf src="../assets/sample.pdf"></pdf> -->
+        <vueshowpdf :pdfurl=pdfurls :maxscale='4' :minscale='0.6' :scale='1.1'></vueshowpdf>
+        <iframe src="https://www.phoca.cz/demo/phocadownload/phocapdf-demo.pdf" width="100%" height="500px">
+              This browser does not support PDFs. Please download the PDF to view it: <a href="/test.pdf">Download PDF</a>
+        </iframe>
       </div>
       <div v-if="type==='bzhan'">
         <b-embed
@@ -41,14 +45,12 @@
 </template>
 
 <script>
-import pdf from 'vue-pdf'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 export default {
   components: {
     Navbar,
-    Footer,
-    pdf
+    Footer
   },
   data () {
     return {

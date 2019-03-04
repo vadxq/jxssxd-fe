@@ -64,7 +64,7 @@ export default {
 .row {
   margin-left: 0;
   margin-top: 1rem;
-  color: #fff;
+  /* color: #fff; */
 }
 .info {
   margin-left: 7vw;

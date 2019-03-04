@@ -18,7 +18,7 @@
             请输入11位数字哟~
           </p>
         </div>
-        <div>
+        <div v-if="!forgetPassShow">
           <!-- <label for="passWord">密码：</label> -->
           <b-form-input
             id="passWord"
@@ -49,7 +49,7 @@
             不能为空哟~
           </p>
         </div>
-        <div v-if="regIsTrue" class="veryCode">
+        <div v-if="regIsTrue||forgetPassShow" class="veryCode">
           <!-- <label for="varyWord">验证码：</label> -->
           <div class="codeVery">
             <b-form-input
@@ -68,8 +68,11 @@
             不能为空哟~
           </p>
         </div>
-        <div v-if="!regIsTrue" class="wjmmQ">
-          <span>忘记密码</span>
+        <div v-if="!regIsTrue&&!forgetPassShow" class="wjmmQ">
+          <span @click="forgetPass()">忘记密码</span>
+        </div>
+        <div v-if="forgetPassShow" class="wjmmQ">
+          <span @click="forgetPass()">密码登录</span>
         </div>
         <div>
           <b-button @click="login()" v-if="!regIsTrue" block variant="outline-danger">登录</b-button>
@@ -103,7 +106,8 @@ export default {
       nameword: '',
       verycode: '',
       countdown: 0,
-      isSendCode: false
+      isSendCode: false,
+      forgetPassShow: false
     }
   },
   computed: {
@@ -164,6 +168,13 @@ export default {
             this.isSendCode = false
           }
         }, i * 1000)
+      }
+    },
+    forgetPass () {
+      if (this.forgetPassShow) {
+        this.forgetPassShow = false
+      } else {
+        this.forgetPassShow = true
       }
     },
     login () {
@@ -239,6 +250,7 @@ export default {
 }
 .wjmmQ span {
   display: inline-block;
+  font-size: 0.86rem;
 }
 .veryCode {
   width: 60vw;

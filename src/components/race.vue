@@ -11,14 +11,30 @@
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACpSURBVEhL7ZaxDcIwEEU9AYyAYB2YIFOwAS0dsAbjsANKywbwfnESkYx8Z6dAip/0uty9pEjitFh2eMO7wyM2scYR3wFPWM0BbVHuib59YXN0QFtS4oF2bXW0JSjD0dagDEXnCEp3dK6g3GORSFDv4DmjzWtXkUjwFz04oQc99OCEHvTw30F94W0gd6zwaPOuv4UOUU+0oVq1Y4UutnjF3N17vOAGF0dKH0m8s/eBg8ijAAAAAElFTkSuQmCC">
           <span>风采大赛</span>
       </div>
-      <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in whcpList" :cid="item.id">
+      <b-card-group deck>
+        <b-card
+          img-src="https://placekitten.com/380/200"
+          img-alt="Image"
+          img-top
+          :footer=item.title
+          footer-tag="footer"
+          @click="postCid(item)"
+          :key=item.id
+          class="item"
+          v-b-modal.modal-scrollable
+          v-for="item in whcpList"
+          :cid="item.id"
+          no-body
+        >
+          <!-- <b-button href="#" variant="primary">{{item.title}}</b-button> -->
+        </b-card>
+      </b-card-group>
+      <!-- <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in whcpList" :cid="item.id">
         {{item.title}}
-      </div>
+      </div> -->
     </b-container>
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
       <div v-if="type==='pdf'">
-        <!-- <pdf src="../assets/sample.pdf"></pdf> -->
-        <vueshowpdf :pdfurl=pdfurls :maxscale='4' :minscale='0.6' :scale='1.1'></vueshowpdf>
         <iframe src="https://www.phoca.cz/demo/phocadownload/phocapdf-demo.pdf" width="100%" height="500px">
               This browser does not support PDFs. Please download the PDF to view it: <a href="/test.pdf">Download PDF</a>
         </iframe>
@@ -57,7 +73,7 @@ export default {
       whcpList: [
         {
           id: 111,
-          title: 'pdf实例（pptz转pdf实现）',
+          title: 'pdf实例',
           content: 'https://www.phoca.cz/demo/phocadownload/phocapdf-demo.pdf',
           type: 'pdf'
         },
@@ -138,9 +154,10 @@ export default {
   display: inline-flex;
   margin-left: 0.4rem;
 }
-/* .modal-scrollable div {
-  width: 100%;
-} */
+.card {
+  margin: 0.5rem;
+  padding: 0;
+}
 footer {
   color: #000;
 }

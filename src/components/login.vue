@@ -4,6 +4,7 @@
     <b-container fluid class="files-container">
       <div class="formgroup">
         <div>
+          <p>账号：</p>
           <!-- <label for="userName">账号：</label> -->
           <b-form-input
             id="userName"
@@ -14,11 +15,12 @@
             aria-describedby="userNameFeedback"
             placeholder="请输入手机号"
           />
-          <p v-show="!usernameState" id="userNameFeedback" class="feedBackP">
+          <!-- <p v-show="!usernameState" id="userNameFeedback" class="feedBackP">
             请输入11位数字哟~
-          </p>
+          </p> -->
         </div>
         <div v-if="!forgetPassShow">
+          <p>密码：</p>
           <!-- <label for="passWord">密码：</label> -->
           <b-form-input
             id="passWord"
@@ -30,11 +32,12 @@
             aria-describedby="passWordFeedback"
             placeholder="请输入密码"
           />
-          <p v-show="!passState" id="passWordFeedback" class="feedBackP">
+          <!-- <p v-show="!passState" id="passWordFeedback" class="feedBackP">
             不能为空哟~
-          </p>
+          </p> -->
         </div>
         <div v-if="regIsTrue" >
+          <p>姓名：</p>
           <!-- <label for="nameWord">姓名：</label> -->
           <b-form-input
             id="nameWord"
@@ -45,11 +48,12 @@
             aria-describedby="nameWordFeedback"
             placeholder="请输入姓名"
           />
-          <p v-show="!nameState" id="nameWordFeedback" class="feedBackP">
+          <!-- <p v-show="!nameState" id="nameWordFeedback" class="feedBackP">
             不能为空哟~
-          </p>
+          </p> -->
         </div>
         <div v-if="regIsTrue||forgetPassShow" class="veryCode">
+          <p>验证码：</p>
           <!-- <label for="varyWord">验证码：</label> -->
           <div class="codeVery">
             <b-form-input
@@ -64,9 +68,9 @@
             <b-button @click="sendCode()" v-show="!isSendCode"  for="varyWord" variant="danger" >验证码</b-button>
             <b-button v-show="isSendCode"  for="varyWord" disabled >{{ codeState }}S</b-button>
           </div>
-          <p v-show="!verycodeState" id="varyWordFeedback" class="feedBackP">
+          <!-- <p v-show="!verycodeState" id="varyWordFeedback" class="feedBackP">
             不能为空哟~
-          </p>
+          </p> -->
         </div>
         <div v-if="!regIsTrue&&!forgetPassShow" class="wjmmQ">
           <span @click="forgetPass()">忘记密码</span>
@@ -219,14 +223,14 @@ export default {
 }
 
 .formgroup {
-  height: 68vh;
+  height: 73vh;
 }
-.formgroup div {
-  height: 4.7rem;
+.formgroup div p {
+  margin-bottom: 0.5rem;
 }
 
 .formgroup:last-child div {
-  margin-top: 0;
+  margin-top: 0.5rem;
   /* height: auto; */
 }
 

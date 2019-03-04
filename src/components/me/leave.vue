@@ -10,35 +10,35 @@
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACpSURBVEhL7ZaxDcIwEEU9AYyAYB2YIFOwAS0dsAbjsANKywbwfnESkYx8Z6dAip/0uty9pEjitFh2eMO7wyM2scYR3wFPWM0BbVHuib59YXN0QFtS4oF2bXW0JSjD0dagDEXnCEp3dK6g3GORSFDv4DmjzWtXkUjwFz04oQc99OCEHvTw30F94W0gd6zwaPOuv4UOUU+0oVq1Y4UutnjF3N17vOAGF0dKH0m8s/eBg8ijAAAAAElFTkSuQmCC">
           <span>互动留言</span>
       </div>
-    </b-container>
-    <b-container class="leave-con">
-      <b-row class="my-1">
-        <b-col sm="2">
-          <label for="input-small">标题：</label>
-        </b-col>
-        <b-col sm="10">
-          <b-form-input v-model="title" id="input-small" size="sm" type="text" placeholder="输入要留言的标题" />
-        </b-col>
-      </b-row>
+      <b-container class="leave-con">
+        <b-row class="my-1">
+          <b-col sm="2">
+            <label for="input-small">标题：</label>
+          </b-col>
+          <b-col sm="10">
+            <b-form-input v-model="title" id="input-small" size="sm" type="text" placeholder="输入要留言的标题" />
+          </b-col>
+        </b-row>
 
-      <b-row class="my-1">
-        <b-col sm="2">
-          <label for="input-default">留言内容：</label>
-        </b-col>
-        <b-col sm="10">
-          <b-form-textarea id="textarea1" v-model="content" placeholder="输入要留言的具体内容" rows="5" />
-          <pre class="mt-3">{{ content }}</pre>
-        </b-col>
-      </b-row>
+        <b-row class="my-1">
+          <b-col sm="2">
+            <label for="input-default">留言内容：</label>
+          </b-col>
+          <b-col sm="10">
+            <b-form-textarea id="textarea1" v-model="content" placeholder="输入要留言的具体内容" rows="5" />
+            <pre class="mt-3">{{ content }}</pre>
+          </b-col>
+        </b-row>
 
-      <b-alert :show="dismissCountDown" dismissible variant="warning" @dismissed="dismissCountDown=0" @dismiss-count-down="countDownChanged" >
-        {{ errMsg }} --{{ dismissCountDown }}
-      </b-alert>
-      <b-row class="my-1">
-        <b-col sm="10">
-          <b-button @click="pushLeave()" variant="dark">提交</b-button>
-        </b-col>
-      </b-row>
+        <b-alert :show="dismissCountDown" dismissible variant="warning" @dismissed="dismissCountDown=0" @dismiss-count-down="countDownChanged" >
+          {{ errMsg }} --{{ dismissCountDown }}
+        </b-alert>
+        <b-row class="my-1">
+          <b-col sm="10">
+            <b-button @click="pushLeave()" variant="outline-secondary">提交</b-button>
+          </b-col>
+        </b-row>
+      </b-container>
     </b-container>
   </section>
 </template>

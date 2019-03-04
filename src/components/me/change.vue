@@ -10,92 +10,139 @@
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACpSURBVEhL7ZaxDcIwEEU9AYyAYB2YIFOwAS0dsAbjsANKywbwfnESkYx8Z6dAip/0uty9pEjitFh2eMO7wyM2scYR3wFPWM0BbVHuib59YXN0QFtS4oF2bXW0JSjD0dagDEXnCEp3dK6g3GORSFDv4DmjzWtXkUjwFz04oQc99OCEHvTw30F94W0gd6zwaPOuv4UOUU+0oVq1Y4UutnjF3N17vOAGF0dKH0m8s/eBg8ijAAAAAElFTkSuQmCC">
           <span>个人信息</span>
       </div>
-    </b-container>
-    <b-container class="change-con">
-      <b-row>
-        <b-col>
-          <b-form >
-            <b-input-group prepend="姓名：" class="mb-2 mr-sm-2 mb-sm-0">
-              <b-input  v-model="msg.name"  />
-            </b-input-group>
-          </b-form>
-        </b-col>
-        <b-col>
-          <b-form >
-            <b-input-group prepend="性别：" class="mb-2 mr-sm-2 mb-sm-0">
-              <b-form-select  v-model="msg.xb" :options="options" />
-            </b-input-group>
-          </b-form>
-        </b-col>
-      </b-row>
 
-      <b-row>
-        <b-col>
-          <b-form >
-            <b-input-group prepend="年龄：" class="mb-2 mr-sm-2 mb-sm-0">
-              <b-input type="number" v-model="msg.nl"  />
+      <b-container class="change-con">
+
+        <b-row>
+          <b-col>
+            <b-input-group prepend="姓名：" >
+              <b-form-input />
             </b-input-group>
-          </b-form>
-        </b-col>
-        <b-col>
-          <b-form >
-            <b-input-group prepend="地区：" class="mb-2 mr-sm-2 mb-sm-0">
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col lg="6" sm="6" cols="6" md="6" xl="6">
+            <b-input-group prepend="性别：" >
+              <b-form-select v-model="msg.xb" :options="options"/>
+            </b-input-group>
+          </b-col>
+
+          <b-col lg="6" sm="6" cols="6" md="6" xl="6">
+            <b-input-group prepend="年龄：" >
+          <b-input type="number" v-model="msg.nl"  />
+        </b-input-group>
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col>
+            <b-input-group prepend="地区：">
               <b-form-select  v-model="msg.dq" :options="options" />
             </b-input-group>
-          </b-form>
-        </b-col>
-      </b-row>
+          </b-col>
+        </b-row>
 
-      <b-row>
-        <b-col>
-          <b-form >
-            <b-input-group prepend="职务：" class="mb-2 mr-sm-2 mb-sm-0">
+        <b-row>
+          <b-col>
+            <b-input-group prepend="职务：">
               <b-form-select  v-model="msg.zw" :options="zwOptions" />
             </b-input-group>
-          </b-form>
-        </b-col>
-        <b-col>
-          <b-form >
-            <b-input-group prepend="职称：" class="mb-2 mr-sm-2 mb-sm-0">
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col>
+            <b-input-group prepend="职称：" >
               <b-input  v-model="msg.zc"  />
             </b-input-group>
-          </b-form>
-        </b-col>
-      </b-row>
 
-      <b-row>
-        <b-col>
-          <b-form >
-            <b-input-group prepend="政治面貌：" class="mb-2 mr-sm-2 mb-sm-0">
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col>
+            <b-input-group prepend="政治面貌：" >
               <b-input  v-model="msg.zzmm"  />
             </b-input-group>
-          </b-form>
-        </b-col>
-        <b-col>
-          <b-form >
-            <b-input-group prepend="毕业学校：" class="mb-2 mr-sm-2 mb-sm-0">
+
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col>
+            <b-input-group prepend="毕业学校：" >
               <b-input  v-model="msg.byxx"  />
             </b-input-group>
-          </b-form>
-        </b-col>
-      </b-row>
 
-      <b-row>
-        <b-col>
-          <b-form >
-            <b-input-group prepend="学历：" class="mb-2 mr-sm-2 mb-sm-0">
-              <b-form-select  v-model="msg.zw" :options="zwOptions" />
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col>
+            <b-input-group prepend="学历：" >
+          <b-form-select  v-model="msg.zw" :options="zwOptions" />
+        </b-input-group>
+
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col>
+            <b-input-group prepend="工作单位：" >
+              <b-input  v-model="msg.gzdw"  />
             </b-input-group>
-          </b-form>
-        </b-col>
-        <b-col>
-          <b-form >
-            <b-input-group prepend="职称：" class="mb-2 mr-sm-2 mb-sm-0">
-              <b-input  v-model="msg.zc"  />
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col>
+            <b-input-group prepend="联系方式：" >
+              <b-input  v-model="msg.gzdw"  />
             </b-input-group>
-          </b-form>
-        </b-col>
-      </b-row>
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col>
+            <b-input-group prepend="学校少先队员人数：" >
+              <b-input  v-model="msg.gzdw"  />
+            </b-input-group>
+          </b-col>
+        </b-row>
+
+        <b-row v-if="zwOpt == 0">
+          <b-col>
+            <b-input-group prepend="少先队辅导员人数：" >
+              <b-input  v-model="msg.gzdw"  />
+            </b-input-group>
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col>
+            <b-form-group
+            description=""
+              label-for="input1"
+            >
+            <p>目前在开展少先队工作过程中遇到的最大困惑:</p>
+              <b-form-textarea
+                v-model="msg.content"
+                placeholder="请输入内容"
+                rows="3"
+                max-rows="6"
+              />
+            </b-form-group>
+
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-button block variant="outline-danger">确认</b-button>
+          </b-col>
+        </b-row>
+
+      </b-container>
     </b-container>
   </section>
 </template>
@@ -118,12 +165,13 @@ export default {
         1: '中队辅导员',
         2: '其他'
       },
+      // zwOpt: null,
       msg: {
         name: '',
         xb: 0,
         nl: '',
         dq: '',
-        zw: '',
+        zw: 2,
         zc: '',
         zzmm: '',
         byxx: '',
@@ -134,6 +182,11 @@ export default {
         fdyrs: '',
         kh: ''
       }
+    }
+  },
+  computed: {
+    zwOpt () {
+      return this.msg.zw
     }
   },
   methods: {
@@ -186,6 +239,13 @@ export default {
 .change-con {
   background-color: #fff;
   padding: 1.2rem 1rem;
+}
+.row {
+  margin-bottom: 1rem;
+}
+.form-group p {
+  font-size: 0.8rem;
+  margin: 0 0 0.4rem 0;
 }
 footer {
   color: #000;

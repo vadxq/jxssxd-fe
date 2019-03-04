@@ -8,13 +8,11 @@
         <!-- <b-carousel-slide caption="Second Slide" img-src="https://picsum.photos/1024/480/?image=12"/> -->
         <!-- <b-carousel-slide caption="Third Slide" img-src="https://picsum.photos/1024/480/?image=22"/> -->
       </b-carousel>
-      <div class="gonggao" >
+      <!-- <div class="gonggao" >
           <b-alert show dismissible>
-            <!-- <button type="button" aria-label="Close" class="close">×</button> -->
             <img src="../assets/gantan.png" > 有新的公告！ <router-link to="/notice">查看详情</router-link>
-            <!-- <b>&#9993;</b> <b>&rArr;</b> -->
           </b-alert>
-      </div>
+      </div> -->
     </div>
 
     <b-container fluid  class="bv-example-row  text-center">

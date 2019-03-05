@@ -10,9 +10,18 @@
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACpSURBVEhL7ZaxDcIwEEU9AYyAYB2YIFOwAS0dsAbjsANKywbwfnESkYx8Z6dAip/0uty9pEjitFh2eMO7wyM2scYR3wFPWM0BbVHuib59YXN0QFtS4oF2bXW0JSjD0dagDEXnCEp3dK6g3GORSFDv4DmjzWtXkUjwFz04oQc99OCEHvTw30F94W0gd6zwaPOuv4UOUU+0oVq1Y4UutnjF3N17vOAGF0dKH0m8s/eBg8ijAAAAAElFTkSuQmCC">
           <span>江西少先队文件</span>
       </div>
-      <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in sxdwjList" :cid="item.id">
-        {{item.name}}
-      </div>
+      <b-row>
+        <b-col>
+          <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in sxdwjList" :cid="item.id">
+            {{item.name}}
+          </div>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <b-button block @click="getMoreList()" variant="outline-danger">更多</b-button>
+        </b-col>
+      </b-row>
     </b-container>
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
       {{content}}
@@ -36,47 +45,47 @@ export default {
           content: '12'
         },
         {
-          id: 2,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 2,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 2,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 2,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 2,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 2,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 2,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 2,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
           id: 3,
+          name: 'sfhjashdksadjhasjd',
+          content: '12'
+        },
+        {
+          id: 4,
+          name: 'sfhjashdksadjhasjd',
+          content: '12'
+        },
+        {
+          id: 2121,
+          name: 'sfhjashdksadjhasjd',
+          content: '12'
+        },
+        {
+          id: 5,
+          name: 'sfhjashdksadjhasjd',
+          content: '12'
+        },
+        {
+          id: 211111,
+          name: 'sfhjashdksadjhasjd',
+          content: '12'
+        },
+        {
+          id: 6,
+          name: 'sfhjashdksadjhasjd',
+          content: '12'
+        },
+        {
+          id: 21,
+          name: 'sfhjashdksadjhasjd',
+          content: '12'
+        },
+        {
+          id: 22,
+          name: 'sfhjashdksadjhasjd',
+          content: '12'
+        },
+        {
+          id: 31,
           name: 'sfhjashdksadjhasjd',
           content: '123'
         }
@@ -101,13 +110,14 @@ export default {
       }
     },
     async getMoreList () {
-      let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=1`)
-      if (res.data.status) {
-        this.sxdwjList.push(res.data.data)
-        if (this.sxdwjList.length === 10 * this.page) {
-          this.page += 1
-        }
-      }
+      // let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=1`)
+      // if (res.data.status) {
+      //   this.sxdwjList = this.sxdwjList.concat(res.data.data)
+      //   if (this.sxdwjList.length === 10 * this.page) {
+      //     this.page += 1
+      //   }
+      // }
+      this.sxdwjList = this.sxdwjList.concat(this.sxdwjList)
     }
   }
 }
@@ -126,7 +136,7 @@ export default {
   padding-right: 0px;
   padding-left: 0px;
   /* background-color: rgb(246, 41, 20); */
-  min-height: 87vh;
+  min-height: 85vh;
   width: 100vw;
 }
 .item:first-child {
@@ -165,5 +175,8 @@ export default {
 }
 footer {
   color: #000;
+}
+.row {
+  margin: 15px 0px;
 }
 </style>

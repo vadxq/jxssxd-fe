@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="race">
     <Navbar navText="风采大赛" />
     <b-container fluid class="files-container">
       <div class="sxd-nav">
@@ -22,22 +22,22 @@
           :key=item.id
           class="item"
           v-b-modal.modal-scrollable
-          v-for="item in whcpList"
+          v-for="item in raceList"
           :cid="item.id"
           no-body
         >
-          <!-- <b-button href="#" variant="primary">{{item.title}}</b-button> -->
         </b-card>
       </b-card-group>
-      <!-- <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in whcpList" :cid="item.id">
-        {{item.title}}
-      </div> -->
+      <b-row>
+        <b-col>
+          <b-button block @click="getMoreList()" variant="outline-danger">更多</b-button>
+        </b-col>
+      </b-row>
     </b-container>
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
       <div v-if="type==='pdf'">
-        <iframe src="https://www.phoca.cz/demo/phocadownload/phocapdf-demo.pdf" width="100%" height="500px">
-              This browser does not support PDFs. Please download the PDF to view it: <a href="/test.pdf">Download PDF</a>
-        </iframe>
+      <iframe src="/static/pdfjs/web/viewer.html?file=" + {{item.content}} frameborder="0" width="100%" height="500">
+      </iframe>
       </div>
       <div v-if="type==='bzhan'">
         <b-embed
@@ -70,23 +70,23 @@ export default {
   },
   data () {
     return {
-      whcpList: [
+      raceList: [
         {
           id: 111,
           title: 'pdf实例',
-          content: 'https://www.phoca.cz/demo/phocadownload/phocapdf-demo.pdf',
+          url: 'https://qnimg.vadxq.com/demo/pdf/demo.pdf',
           type: 'pdf'
         },
         {
           id: 222,
           title: '视频实例（B站视频实例）',
-          content: '<iframe src="//player.bilibili.com/player.html?aid=44211901&cid=77441895&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
+          url: '<iframe src="//player.bilibili.com/player.html?aid=44211901&cid=77441895&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
           type: 'bzhan'
         },
         {
           id: 333,
           title: '视频实例（自身视频）',
-          content: 'http://www.w3school.com.cn/i/movie.mp4',
+          url: 'http://www.w3school.com.cn/i/movie.mp4',
           type: 'mp4'
         }
       ],
@@ -100,6 +100,25 @@ export default {
       this.content = e.content
       this.title = e.title
       this.type = e.type
+    },
+    async getFirList () {
+      let res = await this.$axios.get('/api/data/?page=1&size=10&category=1')
+      if (res.data.status) {
+        this.raceList = res.data.data
+        if (this.raceList.length === 10) {
+          this.page += 1
+        }
+      }
+    },
+    async getMoreList () {
+      // let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=1`)
+      // if (res.data.status) {
+      //   this.raceList = this.raceList.concat(res.data.data)
+      //   if (this.raceList.length === 10 * this.page) {
+      //     this.page += 1
+      //   }
+      // }
+      this.raceList = this.raceList.concat(this.raceList)
     }
   }
 }
@@ -158,7 +177,10 @@ export default {
   margin: 0.5rem;
   padding: 0;
 }
-footer {
+.race footer {
   color: #000;
+}
+.row {
+  margin: 15px 0px;
 }
 </style>

@@ -10,9 +10,18 @@
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACpSURBVEhL7ZaxDcIwEEU9AYyAYB2YIFOwAS0dsAbjsANKywbwfnESkYx8Z6dAip/0uty9pEjitFh2eMO7wyM2scYR3wFPWM0BbVHuib59YXN0QFtS4oF2bXW0JSjD0dagDEXnCEp3dK6g3GORSFDv4DmjzWtXkUjwFz04oQc99OCEHvTw30F94W0gd6zwaPOuv4UOUU+0oVq1Y4UutnjF3N17vOAGF0dKH0m8s/eBg8ijAAAAAElFTkSuQmCC">
           <span> 培训班学习资料</span>
       </div>
-      <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in xxzlList" :cid="item.id">
-        {{item.title}}
-      </div>
+      <b-row>
+        <b-col>
+          <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in xxzlList" :cid="item.id">
+            {{item.name}}
+          </div>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <b-button block @click="getMoreList()" variant="outline-danger">更多</b-button>
+        </b-col>
+      </b-row>
     </b-container>
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
       {{content}}
@@ -27,28 +36,48 @@ export default {
       xxzlList: [
         {
           id: 11,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '11'
         },
         {
           id: 22,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '1122'
         },
         {
           id: 33,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '112233'
         }
       ],
       content: '',
-      title: ''
+      title: '',
+      page: 1
     }
   },
   methods: {
     postCid (e) {
       this.content = e.content
-      this.title = e.title
+      this.title = e.name
+    },
+    async getFirList () {
+      let res = await this.$axios.get('/api/data/?page=1&size=10&category=2')
+      if (res.data.status) {
+        this.xxzlList = res.data.data
+        if (this.xxzlList.length === 10) {
+          this.page += 1
+        }
+      }
+    },
+    async getMoreList () {
+      // let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=2`)
+      // if (res.data.status) {
+      //   this.xxzlList = this.xxzlList.concat(res.data.data)
+      //   if (this.xxzlList.length === 10 * this.page) {
+      //     this.page += 1
+      //   }
+      // }
+      this.xxzlList = this.xxzlList.concat(this.xxzlList)
     }
   }
 }
@@ -106,5 +135,8 @@ export default {
 }
 footer {
   color: #000;
+}
+.row {
+  margin: 15px 0px;
 }
 </style>

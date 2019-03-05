@@ -25,11 +25,16 @@
           </router-link>
         </b-col>
         <b-col cols="6">
-          <a target='_blank' href="http://www.jxyouth.org.cn/twgbw/snb/">
+          <!-- <a target='_blank' href="http://www.jxyouth.org.cn/twgbw/snb/">
             <div>
               阵地建设
             </div>
-          </a>
+          </a> -->
+          <router-link to="/files/sxdwj">
+            <div>
+              阵地建设
+            </div>
+          </router-link>
         </b-col>
       </b-row>
       <b-row align-v="center" align-h="center">

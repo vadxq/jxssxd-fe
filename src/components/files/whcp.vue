@@ -10,9 +10,18 @@
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACpSURBVEhL7ZaxDcIwEEU9AYyAYB2YIFOwAS0dsAbjsANKywbwfnESkYx8Z6dAip/0uty9pEjitFh2eMO7wyM2scYR3wFPWM0BbVHuib59YXN0QFtS4oF2bXW0JSjD0dagDEXnCEp3dK6g3GORSFDv4DmjzWtXkUjwFz04oQc99OCEHvTw30F94W0gd6zwaPOuv4UOUU+0oVq1Y4UutnjF3N17vOAGF0dKH0m8s/eBg8ijAAAAAElFTkSuQmCC">
           <span> 少先队文化产品</span>
       </div>
-      <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in whcpList" :cid="item.id">
-        {{item.title}}
-      </div>
+      <b-row>
+        <b-col>
+          <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in whcpList" :cid="item.id">
+            {{item.name}}
+          </div>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <b-button block @click="getMoreList()" variant="outline-danger">更多</b-button>
+        </b-col>
+      </b-row>
     </b-container>
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
       {{content}}
@@ -27,28 +36,48 @@ export default {
       whcpList: [
         {
           id: 111,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '111'
         },
         {
           id: 222,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '111222'
         },
         {
           id: 333,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '111222333'
         }
       ],
       content: '',
-      title: ''
+      title: '',
+      page: 1
     }
   },
   methods: {
     postCid (e) {
       this.content = e.content
-      this.title = e.title
+      this.title = e.name
+    },
+    async getFirList () {
+      let res = await this.$axios.get('/api/data/?page=1&size=10&category=3')
+      if (res.data.status) {
+        this.whcpList = res.data.data
+        if (this.whcpList.length === 10) {
+          this.page += 1
+        }
+      }
+    },
+    async getMoreList () {
+      // let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=3`)
+      // if (res.data.status) {
+      //   this.whcpList = this.whcpList.concat(res.data.data)
+      //   if (this.whcpList.length === 10 * this.page) {
+      //     this.page += 1
+      //   }
+      // }
+      this.whcpList = this.whcpList.concat(this.whcpList)
     }
   }
 }
@@ -106,5 +135,8 @@ export default {
 }
 footer {
   color: #000;
+}
+.row {
+  margin: 15px 0px;
 }
 </style>

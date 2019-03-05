@@ -36,8 +36,7 @@
     </b-container>
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
       <div v-if="type==='pdf'">
-      <iframe src="/static/pdfjs/web/viewer.html?file=" + {{item.content}} frameborder="0" width="100%" height="500">
-      </iframe>
+        <Pdf :url=url />
       </div>
       <div v-if="type==='bzhan'">
         <b-embed
@@ -63,10 +62,12 @@
 <script>
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
+import Pdf from '@/components/pdf'
 export default {
   components: {
     Navbar,
-    Footer
+    Footer,
+    Pdf
   },
   data () {
     return {
@@ -90,14 +91,14 @@ export default {
           type: 'mp4'
         }
       ],
-      content: '',
+      url: '',
       title: '',
       type: ''
     }
   },
   methods: {
     postCid (e) {
-      this.content = e.content
+      this.url = e.url
       this.title = e.title
       this.type = e.type
     },

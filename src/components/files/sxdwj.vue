@@ -11,7 +11,7 @@
           <span>江西少先队文件</span>
       </div>
       <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in sxdwjList" :cid="item.id">
-        {{item.title}}
+        {{item.name}}
       </div>
     </b-container>
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
@@ -27,68 +27,87 @@ export default {
       sxdwjList: [
         {
           id: 1,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '1'
         },
         {
           id: 2,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '12'
         },
         {
           id: 2,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '12'
         },
         {
           id: 2,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '12'
         },
         {
           id: 2,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '12'
         },
         {
           id: 2,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '12'
         },
         {
           id: 2,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '12'
         },
         {
           id: 2,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '12'
         },
         {
           id: 2,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '12'
         },
         {
           id: 2,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '12'
         },
         {
           id: 3,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '123'
         }
       ],
       content: '',
-      title: ''
+      title: '',
+      page: 1
     }
   },
   methods: {
     postCid (e) {
       this.content = e.content
-      this.title = e.title
+      this.title = e.name
+    },
+    async getFirList () {
+      let res = await this.$axios.get('/api/data/?page=1&size=10&category=1')
+      if (res.data.status) {
+        this.sxdwjList = res.data.data
+        if (this.sxdwjList.length === 10) {
+          this.page += 1
+        }
+      }
+    },
+    async getMoreList () {
+      let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=1`)
+      if (res.data.status) {
+        this.sxdwjList.push(res.data.data)
+        if (this.sxdwjList.length === 10 * this.page) {
+          this.page += 1
+        }
+      }
     }
   }
 }

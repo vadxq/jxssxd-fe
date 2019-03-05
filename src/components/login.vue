@@ -80,7 +80,8 @@
         </div>
         <div>
           <b-button @click="login()" v-if="!regIsTrue" block variant="outline-danger">登录</b-button>
-          <b-button @click="regTrue()" block variant="secondary">注册</b-button>
+          <b-button v-if="!regIsTrue" @click="regTrue()" block variant="secondary">注册</b-button>
+          <b-button class="regButton" v-if="regIsTrue" @click="register()" block variant="secondary">注册</b-button>
           <b-button v-if="regIsTrue" @click="regTrue()" block variant="outline-danger">返回登录</b-button>
         </div>
       </div>
@@ -141,8 +142,15 @@ export default {
       this.content = e.content
       this.title = e.title
     },
+    regTrue () {
+      if (this.regIsTrue) {
+        this.regIsTrue = false
+      } else {
+        this.regIsTrue = true
+      }
+    },
     // 注册
-    async regTrue () {
+    async register () {
       if (this.regIsTrue) {
         // ajax
         if (this.username && this.password && this.nameword && this.verycode) {
@@ -355,5 +363,8 @@ export default {
   height: calc(1.5em + 0.75rem + 2px);
   border-bottom-right-radius: 0.3rem;
   border-top-right-radius: 0.3rem;
+}
+.regButton {
+  margin-top: 1.5rem;
 }
 </style>

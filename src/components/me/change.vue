@@ -156,7 +156,7 @@
         </b-row>
         <b-row>
           <b-col>
-            <b-button block variant="outline-danger">确认</b-button>
+            <b-button block @click="pushLeave()" variant="outline-danger">确认</b-button>
           </b-col>
         </b-row>
 
@@ -183,8 +183,6 @@ export default {
       activityFirCode: '360000000000',
       activitySecCode: null,
       activityThrCode: null,
-      content: '',
-      title: '',
       dismissSecs: 5,
       dismissCountDown: 0,
       errMsg: '',
@@ -228,9 +226,38 @@ export default {
     }
   },
   methods: {
-    pushLeave () {
-      if (!this.content || !this.title) {
+    async pushLeave () {
+      this.msg.qd = this.activityThrCode
+      let errMsg = 0
+      let msg = this.msg
+      delete msg['fdyrs']
+      Object.values(msg).map(e => {
+        if (e === '') {
+          errMsg += 1
+        }
+        console.log(e)
+      })
+      console.log(errMsg)
+      if (errMsg) {
         this.showAlert('请填写完整！')
+      } else {
+        let res = await this.$axios.put('/api/user/info', this.msg)
+        if (res.data.status) {
+          // succ
+        } else {
+          // err
+        }
+      }
+    },
+    async getInfo () {
+      let res = await this.$axios.get('/api/user/info')
+      if (res.data.status) {
+        this.msg = res.data.data
+        if (res.data.data.dq.length > 6) {
+          this.activityFirCode = res.data.data.qd.slice(0, 2)
+          this.activitySecCode = res.data.data.qd.slice(2, 4)
+          this.activityThrCode = res.data.data.qd.slice(4, 6)
+        }
       }
     },
     countDownChanged (dismissCountDown) {
@@ -248,6 +275,7 @@ export default {
     }
   },
   mounted () {
+    this.getInfo()
     // this.cityData.fir = JSON.stringify(province)
   }
 }

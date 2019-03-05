@@ -9,7 +9,7 @@
         <router-link to="/files/sxdwj">更多&gt;</router-link>
       </div>
       <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in sxdwjList" :cid="item.id">
-        {{item.title}}
+        {{item.name}}
       </div>
     </b-container>
 
@@ -22,7 +22,7 @@
         <router-link to="/files/xxzl">更多&gt;</router-link>
       </div>
       <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in xxzlList" :cid="item.id">
-        {{item.title}}
+        {{item.name}}
       </div>
     </b-container>
 
@@ -35,7 +35,7 @@
         <router-link to="/files/whcp">更多&gt;</router-link>
       </div>
       <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in whcpList" :cid="item.id">
-        {{item.title}}
+        {{item.name}}
       </div>
     </b-container>
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
@@ -51,51 +51,51 @@ export default {
       sxdwjList: [
         {
           id: 1,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '1'
         },
         {
           id: 2,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '12'
         },
         {
           id: 3,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '123'
         }
       ],
       xxzlList: [
         {
           id: 11,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '11'
         },
         {
           id: 22,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '1122'
         },
         {
           id: 33,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '112233'
         }
       ],
       whcpList: [
         {
           id: 111,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '111'
         },
         {
           id: 222,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '111222'
         },
         {
           id: 333,
-          title: 'sfhjashdksadjhasjd',
+          name: 'sfhjashdksadjhasjd',
           content: '111222333'
         }
       ],
@@ -106,8 +106,31 @@ export default {
   methods: {
     postCid (e) {
       this.content = e.content
-      this.title = e.title
+      this.title = e.name
+    },
+    async getSxdwjList () {
+      let res = await this.$axios.get('/api/data/?page=1&size=3&category=1')
+      if (res.data.status) {
+        this.sxdwjList = res.data.data
+      }
+    },
+    async getXxzlList () {
+      let res = await this.$axios.get('/api/data/?page=1&size=3&category=2')
+      if (res.data.status) {
+        this.xxzlList = res.data.data
+      }
+    },
+    async getWhcpList () {
+      let res = await this.$axios.get('/api/data/?page=1&size=3&category=3')
+      if (res.data.status) {
+        this.whcpList = res.data.data
+      }
     }
+  },
+  mounted () {
+    this.getSxdwjList()
+    this.getXxzlList()
+    this.getWhcpList()
   }
 }
 </script>

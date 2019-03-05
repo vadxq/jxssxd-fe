@@ -13,7 +13,7 @@
       </div>
       <b-card-group deck>
         <b-card
-          img-src="https://placekitten.com/380/200"
+          img-src="/static/bg.png"
           img-alt="Image"
           img-top
           :footer=item.title

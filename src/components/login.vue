@@ -147,6 +147,7 @@ export default {
         this.regIsTrue = false
       } else {
         this.regIsTrue = true
+        this.forgetPassShow = false
       }
     },
     // 注册

@@ -16,7 +16,15 @@
         <b-row>
           <b-col>
             <b-input-group prepend="姓名：" >
-              <b-form-input />
+              <b-form-input v-model="msg.name"/>
+            </b-input-group>
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col>
+            <b-input-group prepend="身份证号：" >
+              <b-form-input v-model="msg.sfzh"/>
             </b-input-group>
           </b-col>
         </b-row>
@@ -209,7 +217,8 @@ export default {
         lxfs: '', // 联系方式
         dyrs: '', // 队员人数
         fdyrs: '', // 辅导员人数
-        kh: '' // 困惑
+        kh: '', // 困惑
+        sfzh: '' // 身份证
       }
     }
   },

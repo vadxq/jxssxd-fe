@@ -95,6 +95,7 @@
 <script>
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
+
 export default {
   components: {
     Navbar,
@@ -104,7 +105,7 @@ export default {
     return {
       content: '',
       title: '',
-      username: '',
+      username: '17679376618',
       password: '',
       regIsTrue: false,
       nameword: '',
@@ -140,25 +141,59 @@ export default {
       this.content = e.content
       this.title = e.title
     },
-    regTrue () {
+    // 注册
+    async regTrue () {
       if (this.regIsTrue) {
         // ajax
         if (this.username && this.password && this.nameword && this.verycode) {
-          this.$router.push('/me?username=111111&name=张三&part=少年部&zw=部委')
+          // this.$router.push('/me?username=111111&name=张三&part=少年部&zw=部委')
+          try {
+            const response = await this.$axios.post('/api/user/register', {
+              phone: this.username,
+              name: this.nameword,
+              code: this.verycode,
+              password: this.password
+            })
+            if (response.data.status) {
+              this.login()
+            }
+            console.log(response)
+          } catch (error) {
+            console.error(error)
+          }
         } else {
-          this.regIsTrue = false
+          // this.regIsTrue = false
+          console.log('err')
         }
       } else {
         this.regIsTrue = true
       }
     },
-    sendCode () {
-      console.log('111')
+    // 发送验证码
+    async sendCode () {
       if (this.isSendCode === false && this.countdown <= 0) {
-        console.log('222')
+        if (this.username) {
+          try {
+            // const response = await axios.post('/api/user/sms', {
+            //   phone: this.username
+            // })
+            const response = await this.$axios.get('http://115.159.83.44:7192/api/info')
+            console.log(response)
+            if (response.data.status) {
+              console.log('suc')
+            } else {
+              console.log('err')
+            }
+          } catch (error) {
+            console.error(error)
+          }
+        } else {
+          console.log('err')
+        }
         this.listenCode()
       }
     },
+    // 倒计时
     async listenCode () {
       console.log('333')
       this.isSendCode = true
@@ -174,6 +209,7 @@ export default {
         }, i * 1000)
       }
     },
+    // 切换忘记密码
     forgetPass () {
       if (this.forgetPassShow) {
         this.forgetPassShow = false
@@ -181,8 +217,52 @@ export default {
         this.forgetPassShow = true
       }
     },
-    login () {
-      this.$router.push('/me?username=111111&name=张三&part=少年部&zw=部委')
+    async login () {
+      // this.$router.push('/me?username=111111&name=张三&part=少年部&zw=部委')
+      if (this.forgetPassShow) { // 忘记密码，验证码登录
+        if (this.username && this.verycode) {
+          try {
+            const response = await this.$axios.post('/api/user/login', {
+              phone: this.username,
+              code: this.verycode,
+              type: this.sms
+            })
+            // if (response.statu)
+            console.log(response)
+            if (response.data.status) {
+              localStorage.setItem('token', response.data.data)
+              localStorage.setItem('isLogin', true)
+              localStorage.setItem('username', this.username)
+              // localStorage.setItem('name', this.name)
+              this.$router.push(`/me`)
+            }
+          } catch (error) {
+            console.error(error)
+          }
+        } else {
+          console.log('err')
+        }
+      } else { // 密码登录
+        if (this.username && this.password) {
+          try {
+            const response = await this.$axios.post('/api/user/login', {
+              phone: this.username,
+              password: this.password,
+              type: this.password
+            })
+            console.log(response)
+            if (response.data.status) {
+              localStorage.setItem('token', response.data.data)
+              localStorage.setItem('isLogin', true)
+              localStorage.setItem('username', this.username)
+            }
+          } catch (error) {
+            console.error(error)
+          }
+        } else {
+          console.log('err')
+        }
+      }
     }
   }
 }

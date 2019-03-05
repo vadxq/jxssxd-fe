@@ -47,18 +47,22 @@ export default {
     editLogin () {
       this.isLogin = false
       this.$router.push('/me')
+    },
+    async getInfo () {
+      let res = await this.$axios.get('/api/user/info')
+      if (res.data.status) {
+        this.isLogin = true
+        this.name = res.data.data.name
+        this.part = res.data.data.gzdw
+        this.zw = res.data.data.zw
+      } else {
+        // this.isLogin = false
+        // deng lu guo qi
+      }
     }
   },
   created () {
-    if (this.$route.query['name']) {
-      let data = this.$route.query
-      this.isLogin = true
-      this.name = data.name
-      this.part = data.part
-      this.zw = data.zw
-    } else {
-      this.isLogin = false
-    }
+    this.getInfo()
   }
 }
 </script>

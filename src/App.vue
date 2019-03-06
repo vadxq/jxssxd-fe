@@ -72,9 +72,9 @@ export default {
   padding: 0.2rem 1.25rem;
 }
 .sucBox, .errBox {
-  position: absolute;
+  position: fixed;
   z-index: 1000;
   width: 100%;
-  top: 3rem;
+  top: 0rem;
 }
 </style>

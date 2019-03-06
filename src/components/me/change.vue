@@ -239,7 +239,11 @@ export default {
       })
       console.log(errMsg)
       if (errMsg) {
-        this.showAlert('请填写完整！')
+        this.$store.commit('changAlert', {
+          msg: '请填写完整！',
+          status: 2,
+          sec: 5
+        })
       } else {
         let res = await this.$axios.put('/api/user/info', this.msg)
         if (res.data.status) {

@@ -53,7 +53,9 @@
               <b-tab title="少先队文件" :title-link-class="linkClass(1)">Tab Contents 2</b-tab>
               <b-tab title="学习资料" :title-link-class="linkClass(2)">Tab Contents 2</b-tab>
               <b-tab title="文化产品" :title-link-class="linkClass(3)">Tab Contents 2</b-tab>
-              <b-tab title="添加说课大赛" :title-link-class="linkClass(4)">Tab Contents 3</b-tab>
+              <b-tab title="添加说课大赛" :title-link-class="linkClass(4)">
+                <AddRace />
+              </b-tab>
               <b-tab title="添加资料文件" :title-link-class="linkClass(5)">Tab Contents 3</b-tab>
             </b-tabs>
           </b-card>
@@ -68,9 +70,11 @@
 
 <script>
 import Race from '@/components/admin/race'
+import AddRace from '@/components/admin/addRace'
 export default {
   components: {
-    Race
+    Race,
+    AddRace
   },
   data () {
     return {

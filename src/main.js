@@ -8,6 +8,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import axios from './VueAxios'
 import store from './store/index'
+import edit from './edit'
+
+edit()
 
 Vue.use(BootstrapVue)
 

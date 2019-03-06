@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="admin">
     <Navbar navText="管理界面"/>
     <router-view/>
     <Footer/>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style scoped>
-footer {
+.admin footer {
   color: #000;
 }
 </style>

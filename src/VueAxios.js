@@ -27,6 +27,7 @@ axios.interceptors.response.use(data => {
   }
   // return data
 }, error => {
+  console.log(error)
   if (error.response.status) {
     switch (error.response.status) {
       case 401:
@@ -57,8 +58,8 @@ axios.interceptors.response.use(data => {
           sec: 5
         })
     }
-    return Promise.reject(error)
   }
+  return Promise.reject(error)
 })
 
 const install = Vue => {

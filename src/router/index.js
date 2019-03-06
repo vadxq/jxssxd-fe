@@ -14,6 +14,8 @@ import leave from '@/components/me/leave'
 import change from '@/components/me/change'
 import notice from '@/components/notice'
 import race from '@/components/race'
+import admin from '@/components/admin'
+import adminIndex from '@/components/admin/index'
 
 Vue.use(Router)
 
@@ -73,6 +75,14 @@ export default new Router({
     {
       path: '/race',
       component: race
+    },
+    {
+      path: '/admin',
+      component: admin,
+      children: [{
+        path: '/',
+        component: adminIndex
+      }]
     }
   ]
 })

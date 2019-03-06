@@ -112,18 +112,36 @@ export default {
       let res = await this.$axios.get('/api/data/?page=1&size=3&category=1')
       if (res.data.status) {
         this.sxdwjList = res.data.data
+      } else {
+        this.$store.commit('changAlert', {
+          msg: '请求失败！',
+          status: 2,
+          sec: 5
+        })
       }
     },
     async getXxzlList () {
       let res = await this.$axios.get('/api/data/?page=1&size=3&category=2')
       if (res.data.status) {
         this.xxzlList = res.data.data
+      } else {
+        this.$store.commit('changAlert', {
+          msg: '请求失败！',
+          status: 2,
+          sec: 5
+        })
       }
     },
     async getWhcpList () {
       let res = await this.$axios.get('/api/data/?page=1&size=3&category=3')
       if (res.data.status) {
         this.whcpList = res.data.data
+      } else {
+        this.$store.commit('changAlert', {
+          msg: '请求失败！',
+          status: 2,
+          sec: 5
+        })
       }
     }
   },

@@ -205,7 +205,7 @@ export default {
         name: '', // 姓名
         xb: 0, // 性别
         nl: '', // 年龄
-        dq: '', // 地区（代码，后端建库）
+        // dq: '', // 地区（代码，后端建库）
         zw: 2, // 职务
         zc: '', // 职称
         zzmm: '', // 政治面貌
@@ -243,9 +243,17 @@ export default {
       } else {
         let res = await this.$axios.put('/api/user/info', this.msg)
         if (res.data.status) {
-          // succ
+          this.$store.commit('changAlert', {
+            msg: '更新成功！',
+            status: 1,
+            sec: 5
+          })
         } else {
-          // err
+          this.$store.commit('changAlert', {
+            msg: '更新失败！',
+            status: 2,
+            sec: 5
+          })
         }
       }
     },

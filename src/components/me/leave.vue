@@ -55,9 +55,31 @@ export default {
     }
   },
   methods: {
-    pushLeave () {
+    async pushLeave () {
       if (!this.content || !this.title) {
-        this.showAlert('请填写完整！')
+        this.$store.commit('changAlert', {
+          msg: '请填写完整！',
+          status: 2,
+          sec: 5
+        })
+      } else {
+        let res = await this.$axios.post('/api/user/leave', {
+          title: this.title,
+          content: this.content
+        })
+        if (res.data.status) {
+          this.$store.commit('changAlert', {
+            msg: '提交成功！',
+            status: 1,
+            sec: 5
+          })
+        } else {
+          this.$store.commit('changAlert', {
+            msg: '提交失败！',
+            status: 2,
+            sec: 5
+          })
+        }
       }
     },
     countDownChanged (dismissCountDown) {

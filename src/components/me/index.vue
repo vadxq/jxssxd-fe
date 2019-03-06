@@ -56,8 +56,11 @@ export default {
         this.part = res.data.data.gzdw
         this.zw = res.data.data.zw
       } else {
-        // this.isLogin = false
-        // deng lu guo qi
+        this.$store.commit('changAlert', {
+          msg: '登陆过期！',
+          status: 2,
+          sec: 5
+        })
       }
     }
   },

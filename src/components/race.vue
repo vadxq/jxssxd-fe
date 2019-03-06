@@ -109,6 +109,12 @@ export default {
         if (this.raceList.length === 10) {
           this.page += 1
         }
+      } else {
+        this.$store.commit('changAlert', {
+          msg: '获取失败，请稍后再试！',
+          status: 2,
+          sec: 5
+        })
       }
     },
     async getMoreList () {

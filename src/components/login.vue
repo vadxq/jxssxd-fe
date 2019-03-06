@@ -168,11 +168,18 @@ export default {
             }
             console.log(response)
           } catch (error) {
-            console.error(error)
+            this.$store.commit('changAlert', {
+              msg: '请求失败',
+              status: 2,
+              sec: 5
+            })
           }
         } else {
-          // this.regIsTrue = false
-          console.log('err')
+          this.$store.commit('changAlert', {
+            msg: '请填写完整！',
+            status: 2,
+            sec: 5
+          })
         }
       } else {
         this.regIsTrue = true
@@ -183,21 +190,32 @@ export default {
       if (this.isSendCode === false && this.countdown <= 0) {
         if (this.username) {
           try {
-            // const response = await axios.post('/api/user/sms', {
-            //   phone: this.username
-            // })
-            const response = await this.$axios.get('http://115.159.83.44:7192/api/info')
-            console.log(response)
+            const response = await this.$axios.post('/api/user/sms', {
+              phone: this.username
+            })
+            // const response = await this.$axios.get('http://115.159.83.44:7192/api/info')
             if (response.data.status) {
               console.log('suc')
             } else {
-              console.log('err')
+              this.$store.commit('changAlert', {
+                msg: '发送失败！',
+                status: 2,
+                sec: 5
+              })
             }
           } catch (error) {
-            console.error(error)
+            this.$store.commit('changAlert', {
+              msg: '请求失败',
+              status: 2,
+              sec: 5
+            })
           }
         } else {
-          console.log('err')
+          this.$store.commit('changAlert', {
+            msg: '请填写手机号！',
+            status: 2,
+            sec: 5
+          })
         }
         this.listenCode()
       }
@@ -244,12 +262,26 @@ export default {
               localStorage.setItem('username', this.username)
               // localStorage.setItem('name', this.name)
               this.$router.push(`/me`)
+            } else {
+              this.$store.commit('changAlert', {
+                msg: '账号或验证码错误！',
+                status: 2,
+                sec: 5
+              })
             }
           } catch (error) {
-            console.error(error)
+            this.$store.commit('changAlert', {
+              msg: '请求失败！',
+              status: 2,
+              sec: 5
+            })
           }
         } else {
-          console.log('err')
+          this.$store.commit('changAlert', {
+            msg: '请填写完整！',
+            status: 2,
+            sec: 5
+          })
         }
       } else { // 密码登录
         if (this.username && this.password) {
@@ -264,12 +296,26 @@ export default {
               localStorage.setItem('token', response.data.data)
               localStorage.setItem('isLogin', true)
               localStorage.setItem('username', this.username)
+            } else {
+              this.$store.commit('changAlert', {
+                msg: '账号或密码错误！',
+                status: 2,
+                sec: 5
+              })
             }
           } catch (error) {
-            console.error(error)
+            this.$store.commit('changAlert', {
+              msg: '请求失败！',
+              status: 2,
+              sec: 5
+            })
           }
         } else {
-          console.log('err')
+          this.$store.commit('changAlert', {
+            msg: '请填写完整！',
+            status: 2,
+            sec: 5
+          })
         }
       }
     }

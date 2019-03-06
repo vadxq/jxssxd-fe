@@ -1,5 +1,6 @@
 <template>
   <section>
+
     <Navbar navText="首页" />
 
     <div class="ggdiv">

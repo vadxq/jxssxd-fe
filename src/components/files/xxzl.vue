@@ -67,6 +67,12 @@ export default {
         if (this.xxzlList.length === 10) {
           this.page += 1
         }
+      } else {
+        this.$store.commit('changAlert', {
+          msg: '请求失败！',
+          status: 2,
+          sec: 5
+        })
       }
     },
     async getMoreList () {

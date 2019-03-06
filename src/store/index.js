@@ -1,13 +1,26 @@
-// import Vue from 'vue'
-// import Vuex from 'vuex'
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-// Vue.use(Vuex)
+Vue.use(Vuex)
 
-// const debug = process.env.NODE_ENV !== 'production'
+const store = new Vuex.Store({
+  state: {
+    alert: {
+      msg: '',
+      status: 0,
+      sec: 0
+    }
+  },
+  getters: {
+    counts: (state) => {
+      return state.count
+    }
+  },
+  mutations: {
+    changAlert: (state, e) => {
+      state.alert = e
+    }
+  }
+})
 
-// export default new Vuex.Store({
-//   modules: {
-
-//   },
-//   strict: debug
-// })
+export default store

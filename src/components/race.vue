@@ -103,7 +103,7 @@ export default {
       this.type = e.type
     },
     async getFirList () {
-      let res = await this.$axios.get('/api/data/?page=1&size=10&category=1')
+      let res = await this.$axios.get('/api/contest?page=1&size=10')
       if (res.data.status) {
         this.raceList = res.data.data
         if (this.raceList.length === 10) {
@@ -118,7 +118,7 @@ export default {
       }
     },
     async getMoreList () {
-      // let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=1`)
+      // let res = await this.$axios.get(`/api/contest?page=${this.page}&size=10`)
       // if (res.data.status) {
       //   this.raceList = this.raceList.concat(res.data.data)
       //   if (this.raceList.length === 10 * this.page) {

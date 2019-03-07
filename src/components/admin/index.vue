@@ -50,13 +50,21 @@
               <b-tab title="说课大赛" :title-link-class="linkClass(0)">
                 <Race/>
               </b-tab>
-              <b-tab title="少先队文件" :title-link-class="linkClass(1)">Tab Contents 2</b-tab>
-              <b-tab title="学习资料" :title-link-class="linkClass(2)">Tab Contents 2</b-tab>
-              <b-tab title="文化产品" :title-link-class="linkClass(3)">Tab Contents 2</b-tab>
+              <b-tab title="少先队文件" :title-link-class="linkClass(1)">
+                <Sxdwj />
+              </b-tab>
+              <b-tab title="学习资料" :title-link-class="linkClass(2)">
+                <Xxzl />
+              </b-tab>
+              <b-tab title="文化产品" :title-link-class="linkClass(3)">
+                <Whcp />
+              </b-tab>
               <b-tab title="添加说课大赛" :title-link-class="linkClass(4)">
                 <AddRace />
               </b-tab>
-              <b-tab title="添加资料文件" :title-link-class="linkClass(5)">Tab Contents 3</b-tab>
+              <b-tab title="添加资料文件" :title-link-class="linkClass(5)">
+                <AddZl />
+              </b-tab>
             </b-tabs>
           </b-card>
 
@@ -70,11 +78,19 @@
 
 <script>
 import Race from '@/components/admin/race'
+import Sxdwj from '@/components/admin/sxdwj'
+import Whcp from '@/components/admin/whcp'
+import Xxzl from '@/components/admin/xxzl'
 import AddRace from '@/components/admin/addRace'
+import AddZl from '@/components/admin/addZl'
 export default {
   components: {
     Race,
-    AddRace
+    Sxdwj,
+    Whcp,
+    Xxzl,
+    AddRace,
+    AddZl
   },
   data () {
     return {

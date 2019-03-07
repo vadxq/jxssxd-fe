@@ -1,14 +1,14 @@
 <template>
   <section>
     <b-list-group>
-      <div v-for="item in raceList" :key="item.id">
+      <div v-for="item in sxdList" :key="item.id">
         <b-list-group-item v-b-toggle="'raceid' +item.id" >
           {{item.title}}
         </b-list-group-item>
         <b-collapse :id="'raceid' + item.id" class="mt-2">
           <p>{{item.content}}</p>
-          <img :src=item.img >
-          <p>类型：<span>{{item.type}}</span></p>
+          <!-- <img :src=item.img > -->
+          <!-- <p>类型：<span>{{item.type}}</span></p> -->
           <p>URL：{{item.url}}</p>
           <p>
             <b-button v-b-modal.raceModal @click="changeRaceId(item.id, item.title)"  variant="outline-danger" class="m-1">删除</b-button>
@@ -34,31 +34,25 @@ export default {
   },
   data () {
     return {
-      raceList: [
+      sxdList: [
         {
           id: 111,
           title: 'pdf实例',
           content: 'sdksjdsjdlsad',
-          img: 'sssssss',
-          url: 'https://qnimg.vadxq.com/demo/pdf/demo.pdf',
-          type: 'pdf'
+          url: 'https://qnimg.vadxq.com/demo/pdf/demo.pdf'
         },
         {
           id: 222,
           title: '视频实例（B站视频实例）',
           content: 'sdksjdsjdlsad',
-          img: 'sssssss',
           url:
-            '<iframe src="//player.bilibili.com/player.html?aid=44211901&cid=77441895&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
-          type: 'bzhan'
+            '<iframe src="//player.bilibili.com/player.html?aid=44211901&cid=77441895&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>'
         },
         {
           id: 333,
           title: '视频实例（自身视频）',
           content: 'sdksjdsjdlsad',
-          img: 'sssssss',
-          url: 'http://www.w3school.com.cn/i/movie.mp4',
-          type: 'mp4'
+          url: 'http://www.w3school.com.cn/i/movie.mp4'
         }
       ],
       activeId: null,
@@ -71,10 +65,10 @@ export default {
       this.activeTitle = title
     },
     async getFirList () {
-      let res = await this.$axios.get('/api/contest?page=1&size=10')
+      let res = await this.$axios.get('/api/data/?page=1&size=5&category=2')
       if (res.data.status) {
-        this.raceList = res.data.data
-        if (this.raceList.length === 10) {
+        this.sxdList = res.data.data
+        if (this.sxdList.length === 10) {
           this.page += 1
         }
       } else {
@@ -86,17 +80,17 @@ export default {
       }
     },
     async getMoreList () {
-      // let res = await this.$axios.get(`/api/contest?page=${this.page}&size=10`)
+      // let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=2`)
       // if (res.data.status) {
-      //   this.raceList = this.raceList.concat(res.data.data)
-      //   if (this.raceList.length === 10 * this.page) {
+      //   this.sxdList = this.sxdList.concat(res.data.data)
+      //   if (this.sxdList.length === 10 * this.page) {
       //     this.page += 1
       //   }
       // }
-      this.raceList = this.raceList.concat(this.raceList)
+      this.sxdList = this.sxdList.concat(this.sxdList)
     },
     async delRace () {
-      let res = await this.$axios.delete(`/api/admin/contest/${this.activeId}`)
+      let res = await this.$axios.delete(`/api/admin/data/${this.activeId}`)
       if (res.data.status) {
         this.$store.commit('changAlert', {
           msg: '删除成功！',

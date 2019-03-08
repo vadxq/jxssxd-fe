@@ -4,16 +4,16 @@
     <b-container fluid class="files-container">
       <div class="sxd-nav">
         <router-link to="/">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFOSURBVEhL7ZU9SgNRGEVHsIudWCsuQCzcgOgSBFchWLoAwdINCJZuwM7CwkZsLRQXkJQRKwVR74G58DG8Sd7EmUkzBw483vdzUZKXYqAB66W9silfSjn3wo4cy99Sztx1yr6cSoda7qh1wpH8lAT9yNNSztxRo6dVTuS3JOBLHkvDmTtq9ND7b1bkuWQpfsgDWYU7au5jhtmFWJXX0ssmclfWQY0e9zPLjkaM5K30kje5LedBD72eYwe7suBReJQefpIbMhd6mfE8u+Y+NFvyVXroQa7JpjBzL72HnexOUn0Y8EIuypmMu5IPDV/+dxkbsc1gJGPmQ+PGtoKzqQu+lHc1Uou0GsyHzbWq1CKdBPOj4L/UPxq9BMeQ1B0MwVl4YGnBN/Iw+CyrIQ6mFnuvpPdk44E6U8GzzCY1HO0sOP7LUu5JwznVEx1YFkXxBxYv2KZyVCIFAAAAAElFTkSuQmCC">
+          <img src="../assets/index.png">
           首页
         </router-link>
-        <span> /</span>
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACpSURBVEhL7ZaxDcIwEEU9AYyAYB2YIFOwAS0dsAbjsANKywbwfnESkYx8Z6dAip/0uty9pEjitFh2eMO7wyM2scYR3wFPWM0BbVHuib59YXN0QFtS4oF2bXW0JSjD0dagDEXnCEp3dK6g3GORSFDv4DmjzWtXkUjwFz04oQc99OCEHvTw30F94W0gd6zwaPOuv4UOUU+0oVq1Y4UutnjF3N17vOAGF0dKH0m8s/eBg8ijAAAAAElFTkSuQmCC">
+        <span> / </span>
+        <img src="../assets/race.png">
           <span>风采大赛</span>
       </div>
       <b-card-group deck>
         <b-card
-          img-src="/static/bg.png"
+          :img-src="item.img"
           img-alt="Image"
           img-top
           :footer=item.title
@@ -30,7 +30,7 @@
       </b-card-group>
       <b-row>
         <b-col>
-          <b-button block @click="getMoreList()" variant="outline-danger">更多</b-button>
+          <b-button v-if="raceList.length >= 10" block @click="getMoreList()" variant="outline-danger">更多</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -42,17 +42,18 @@
         <b-embed
           type="iframe"
           aspect="16by9"
-          src="//player.bilibili.com/player.html?aid=44211901&cid=77441895&page=1"
+          :src=url
           allowfullscreen
         />
       </div>
       <div v-if="type==='mp4'">
-        <b-embed
+        <!-- <b-embed
           type="iframe"
           aspect="16by9"
-          src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+          :src=url
           allowfullscreen
-        />
+        /> -->
+        <VideoPlayer :poster=postUrl :videosrc=url :autoplay='false'/>
       </div>
     </b-modal>
     <Footer/>
@@ -63,37 +64,22 @@
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import Pdf from '@/components/pdf'
+import VideoPlayer from '@/components/video.vue'
+import { raceList } from '../racelist'
 export default {
   components: {
     Navbar,
     Footer,
-    Pdf
+    Pdf,
+    VideoPlayer
   },
   data () {
     return {
-      raceList: [
-        {
-          id: 111,
-          title: 'pdf实例',
-          url: 'http://13879158849.oss-cn-hongkong.aliyuncs.com/%E6%AF%94%E8%B5%9B/2016%E5%B0%91%E5%85%88%E9%98%9F%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC%E8%A7%82%E6%95%99%E8%82%B2%E6%B4%BB%E5%8A%A8%E8%BE%85%E5%AF%BC%E6%80%9D%E8%B7%AF%E5%8F%8A%E6%A1%88%E4%BE%8B%EF%BC%88office03%EF%BC%89_compressed.pdf',
-          type: 'pdf'
-        },
-        {
-          id: 222,
-          title: '视频实例（B站视频实例）',
-          url: '<iframe src="//player.bilibili.com/player.html?aid=44211901&cid=77441895&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
-          type: 'bzhan'
-        },
-        {
-          id: 333,
-          title: '视频实例（自身视频）',
-          url: 'http://13879158849.oss-cn-hongkong.aliyuncs.com/%E6%B1%9F%E8%A5%BF%E7%9C%81%E7%AC%AC%E4%BA%8C%E5%B1%8A%E5%B0%91%E5%85%88%E9%98%9F%E8%BE%85%E5%AF%BC%E5%91%98%E8%AF%B4%E8%AF%BE%E5%A4%A7%E8%B5%9B-3.mp4',
-          type: 'mp4'
-        }
-      ],
+      raceList: raceList,
       url: '',
       title: '',
-      type: ''
+      type: '',
+      postUrl: ''
     }
   },
   methods: {
@@ -101,6 +87,7 @@ export default {
       this.url = e.url
       this.title = e.title
       this.type = e.type
+      this.postUrl = e.img
     },
     async getFirList () {
       let res = await this.$axios.get('/api/contest?page=1&size=10')
@@ -171,7 +158,12 @@ export default {
   border-bottom: solid 1.4px rgba(0, 0, 0, 0.4);
 }
 .sxd-nav img {
+  width: 1.35rem;
+  margin: 0 0 0 0.4rem;
+}
+.sxd-nav a img {
   margin: -0.3rem 0 0 0.3rem;
+  width: 1.1rem;
 }
 .sxd-nav a {
   color: rgb(246, 41, 20);
@@ -181,7 +173,7 @@ export default {
   margin-left: 0.4rem;
 }
 .card {
-  margin: 0.5rem;
+  margin: 0.75rem;
   padding: 0;
 }
 .race footer {
@@ -189,5 +181,8 @@ export default {
 }
 .row {
   margin: 15px 0px;
+}
+video {
+  width: 100%;
 }
 </style>

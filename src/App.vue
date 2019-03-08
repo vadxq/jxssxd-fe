@@ -73,6 +73,7 @@ export default {
 }
 .sucBox, .errBox {
   position: fixed;
+  float: left;
   z-index: 1000;
   width: 100%;
   top: 0rem;

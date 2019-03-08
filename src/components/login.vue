@@ -19,8 +19,9 @@
             请输入11位数字哟~
           </p> -->
         </div>
-        <div v-if="!forgetPassShow">
-          <p>密码：</p>
+        <div >
+          <p v-if="!forgetPassShow">密码：</p>
+          <p v-if="forgetPassShow">新密码：</p>
           <!-- <label for="passWord">密码：</label> -->
           <b-form-input
             id="passWord"
@@ -106,7 +107,7 @@ export default {
     return {
       content: '',
       title: '',
-      username: '17679376618',
+      username: '',
       password: '',
       regIsTrue: false,
       nameword: '',

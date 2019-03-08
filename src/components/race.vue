@@ -75,7 +75,7 @@ export default {
         {
           id: 111,
           title: 'pdf实例',
-          url: 'https://qnimg.vadxq.com/demo/pdf/demo.pdf',
+          url: 'http://13879158849.oss-cn-hongkong.aliyuncs.com/%E6%AF%94%E8%B5%9B/2016%E5%B0%91%E5%85%88%E9%98%9F%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC%E8%A7%82%E6%95%99%E8%82%B2%E6%B4%BB%E5%8A%A8%E8%BE%85%E5%AF%BC%E6%80%9D%E8%B7%AF%E5%8F%8A%E6%A1%88%E4%BE%8B%EF%BC%88office03%EF%BC%89_compressed.pdf',
           type: 'pdf'
         },
         {
@@ -87,7 +87,7 @@ export default {
         {
           id: 333,
           title: '视频实例（自身视频）',
-          url: 'http://www.w3school.com.cn/i/movie.mp4',
+          url: 'http://13879158849.oss-cn-hongkong.aliyuncs.com/%E6%B1%9F%E8%A5%BF%E7%9C%81%E7%AC%AC%E4%BA%8C%E5%B1%8A%E5%B0%91%E5%85%88%E9%98%9F%E8%BE%85%E5%AF%BC%E5%91%98%E8%AF%B4%E8%AF%BE%E5%A4%A7%E8%B5%9B-3.mp4',
           type: 'mp4'
         }
       ],

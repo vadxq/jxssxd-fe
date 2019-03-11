@@ -72,7 +72,7 @@ export default {
   padding: 0.2rem 1.25rem;
 }
 .sucBox, .errBox {
-  position: fixed;
+  position: absolute;
   float: left;
   z-index: 1000;
   width: 100%;

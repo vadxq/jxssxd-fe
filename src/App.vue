@@ -4,14 +4,14 @@
       :show="suctStatus.sec"
       dismissible
       @dismissed="suctStatus.sec=0"
-      @dismiss-count-down="countDownChanged"
+      @dismiss-count-down="countSucChanged"
       class="sucBox"
       variant="success">{{suctStatus.msg}}</b-alert>
     <b-alert
       :show="errStatus.sec"
       dismissible
       @dismissed="errStatus.sec=0"
-      @dismiss-count-down="countDownChanged"
+      @dismiss-count-down="countErrChanged"
       class="errBox"
       variant="danger"
     >{{errStatus.msg}}</b-alert>
@@ -28,8 +28,8 @@ export default {
         return this.$store.state.alert
       } else {
         return {
-          msg: '',
           status: 0,
+          msg: '',
           sec: 0
         }
       }
@@ -39,8 +39,8 @@ export default {
         return this.$store.state.alert
       } else {
         return {
-          msg: '',
           status: 0,
+          msg: '',
           sec: 0
         }
       }
@@ -52,9 +52,18 @@ export default {
     }
   },
   methods: {
-    countDownChanged (sec) {
-      this.errStatus.sec = sec
+    countSucChanged (sec) {
       this.suctStatus.sec = sec
+      setTimeout(() => {
+        this.$store.state.alert = {
+          status: 0,
+          msg: '',
+          sec: 0
+        }
+      }, 5000)
+    },
+    countErrChanged (sec) {
+      this.errStatus.sec = sec
       setTimeout(() => {
         this.$store.state.alert = {
           status: 0,
@@ -80,7 +89,7 @@ export default {
 }
 .sucBox, .errBox {
   /* float: left; */
-  position: absolute;
+  position: fixed!important;
   z-index: 1000;
   width: 100%;
   top: 0rem;

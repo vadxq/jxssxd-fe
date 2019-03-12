@@ -19,7 +19,7 @@
       </b-row>
       <b-row>
         <b-col>
-          <b-button block @click="getMoreList()" variant="outline-danger">更多</b-button>
+          <b-button v-if="xxzlList.length >= 10" block @click="getMoreList()" variant="outline-danger">更多</b-button>
         </b-col>
       </b-row>
     </b-container>

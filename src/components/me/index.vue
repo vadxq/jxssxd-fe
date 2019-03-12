@@ -4,23 +4,27 @@
       <b-row class="infos">
         <b-col cols="1"></b-col>
         <b-col cols="2"><img src="/static/logo.png"></b-col>
-        <b-col v-if="!isLogin"><router-link to="/login">登录 / 注册</router-link></b-col>
+        <b-col v-if="!isLogin"><router-link to="/login?url=/me">登录 / 注册</router-link></b-col>
         <b-col class="detail" v-if="isLogin">
           <h4>{{name}}</h4>
           <h6>部门：{{part}}-{{zw}}</h6>
         </b-col>
       </b-row>
       <b-row class="buttons" v-if="isLogin">
-        <b-col cols="2"><img src="/static/logo.png"></b-col>
+        <b-col cols="2"><img src="@/assets/personalinfo.png"></b-col>
         <b-col cols="10"><router-link to="/me/change">个人信息</router-link></b-col>
       </b-row>
       <b-row class="buttons">
-        <b-col cols="2"><img src="/static/logo.png"></b-col>
+        <b-col cols="2"><img src="@/assets/ex.png"></b-col>
         <b-col cols="10"><router-link to="/me/jianjie">平台简介</router-link></b-col>
       </b-row>
       <b-row class="buttons">
-        <b-col cols="2"><img src="/static/logo.png"></b-col>
+        <b-col cols="2"><img src="@/assets/leave.png"></b-col>
         <b-col cols="10"><router-link to="/me/leave">互动留言</router-link></b-col>
+      </b-row>
+      <b-row class="buttons" v-if="isLogin && isAdmin">
+        <b-col cols="2"><img src="/static/logo.png"></b-col>
+        <b-col cols="10"><router-link to="/admin">管理界面</router-link></b-col>
       </b-row>
       <b-row v-if="isLogin" class="editLoginDiv">
         <b-button @click="editLogin()" block variant="outline-danger">退出登录</b-button>
@@ -40,7 +44,8 @@ export default {
       isLogin: false,
       name: '',
       part: '',
-      zw: ''
+      zw: '',
+      isAdmin: false
     }
   },
   methods: {
@@ -56,6 +61,7 @@ export default {
         this.name = res.data.data.name
         this.part = res.data.data.gzdw
         this.zw = res.data.data.zw
+        this.isAdmin = res.data.data.is_admin
       } else {
         this.$store.commit('changAlert', {
           msg: '登陆过期！',

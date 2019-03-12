@@ -49,55 +49,55 @@ export default {
   data () {
     return {
       sxdwjList: [
-        {
-          id: 1,
-          name: 'sfhjashdksadjhasjd',
-          content: '1'
-        },
-        {
-          id: 2,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 3,
-          name: 'sfhjashdksadjhasjd',
-          content: '123'
-        }
+        // {
+        //   id: 1,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '1'
+        // },
+        // {
+        //   id: 2,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '12'
+        // },
+        // {
+        //   id: 3,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '123'
+        // }
       ],
       xxzlList: [
-        {
-          id: 11,
-          name: 'sfhjashdksadjhasjd',
-          content: '11'
-        },
-        {
-          id: 22,
-          name: 'sfhjashdksadjhasjd',
-          content: '1122'
-        },
-        {
-          id: 33,
-          name: 'sfhjashdksadjhasjd',
-          content: '112233'
-        }
+        // {
+        //   id: 11,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '11'
+        // },
+        // {
+        //   id: 22,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '1122'
+        // },
+        // {
+        //   id: 33,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '112233'
+        // }
       ],
       whcpList: [
-        {
-          id: 111,
-          name: 'sfhjashdksadjhasjd',
-          content: '111'
-        },
-        {
-          id: 222,
-          name: 'sfhjashdksadjhasjd',
-          content: '111222'
-        },
-        {
-          id: 333,
-          name: 'sfhjashdksadjhasjd',
-          content: '111222333'
-        }
+        // {
+        //   id: 111,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '111'
+        // },
+        // {
+        //   id: 222,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '111222'
+        // },
+        // {
+        //   id: 333,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '111222333'
+        // }
       ],
       content: '',
       title: ''

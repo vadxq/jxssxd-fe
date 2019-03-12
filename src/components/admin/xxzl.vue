@@ -16,7 +16,7 @@
         </b-collapse>
       </div>
       <p class="more-p">
-        <b-button block @click="getMoreList()" variant="outline-danger">更多</b-button>
+        <b-button v-if="sxdList.length >= 10" block @click="getMoreList()" variant="outline-danger">更多</b-button>
 
       </p>
     </b-list-group>
@@ -35,25 +35,25 @@ export default {
   data () {
     return {
       sxdList: [
-        {
-          id: 111,
-          title: 'pdf实例',
-          content: 'sdksjdsjdlsad',
-          url: 'https://qnimg.vadxq.com/demo/pdf/demo.pdf'
-        },
-        {
-          id: 222,
-          title: '视频实例（B站视频实例）',
-          content: 'sdksjdsjdlsad',
-          url:
-            '<iframe src="//player.bilibili.com/player.html?aid=44211901&cid=77441895&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>'
-        },
-        {
-          id: 333,
-          title: '视频实例（自身视频）',
-          content: 'sdksjdsjdlsad',
-          url: 'http://www.w3school.com.cn/i/movie.mp4'
-        }
+        // {
+        //   id: 111,
+        //   title: 'pdf实例',
+        //   content: 'sdksjdsjdlsad',
+        //   url: 'https://qnimg.vadxq.com/demo/pdf/demo.pdf'
+        // },
+        // {
+        //   id: 222,
+        //   title: '视频实例（B站视频实例）',
+        //   content: 'sdksjdsjdlsad',
+        //   url:
+        //     '<iframe src="//player.bilibili.com/player.html?aid=44211901&cid=77441895&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>'
+        // },
+        // {
+        //   id: 333,
+        //   title: '视频实例（自身视频）',
+        //   content: 'sdksjdsjdlsad',
+        //   url: 'http://www.w3school.com.cn/i/movie.mp4'
+        // }
       ],
       activeId: null,
       activeTitle: null
@@ -80,14 +80,14 @@ export default {
       }
     },
     async getMoreList () {
-      // let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=2`)
-      // if (res.data.status) {
-      //   this.sxdList = this.sxdList.concat(res.data.data)
-      //   if (this.sxdList.length === 10 * this.page) {
-      //     this.page += 1
-      //   }
-      // }
-      this.sxdList = this.sxdList.concat(this.sxdList)
+      let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=2`)
+      if (res.data.status) {
+        this.sxdList = this.sxdList.concat(res.data.data)
+        if (this.sxdList.length === 10 * this.page) {
+          this.page += 1
+        }
+      }
+      // this.sxdList = this.sxdList.concat(this.sxdList)
     },
     async delRace () {
       let res = await this.$axios.delete(`/api/admin/data/${this.activeId}`)

@@ -16,6 +16,12 @@ import notice from '@/components/notice'
 import race from '@/components/race'
 import admin from '@/components/admin'
 import adminIndex from '@/components/admin/index'
+import adminrace from '@/components/admin/race'
+import addRace from '@/components/admin/addRace'
+import addZl from '@/components/admin/addZl'
+import adminsxdwj from '@/components/admin/sxdwj'
+import adminwhcp from '@/components/admin/whcp'
+import adminxxzl from '@/components/admin/xxzl'
 
 Vue.use(Router)
 
@@ -81,7 +87,34 @@ export default new Router({
       component: admin,
       children: [{
         path: '/',
-        component: adminIndex
+        component: adminIndex,
+        redirect: 'race',
+        children: [
+          {
+            path: 'race',
+            component: adminrace
+          },
+          {
+            path: 'addrace',
+            component: addRace
+          },
+          {
+            path: 'addzl',
+            component: addZl
+          },
+          {
+            path: 'sxdwj',
+            component: adminsxdwj
+          },
+          {
+            path: 'whcp',
+            component: adminwhcp
+          },
+          {
+            path: 'xxzl',
+            component: adminxxzl
+          }
+        ]
       }]
     }
   ]

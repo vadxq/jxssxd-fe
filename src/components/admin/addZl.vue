@@ -109,5 +109,7 @@ export default {
 <style scoped>
 .row {
   margin-bottom: 0.6rem;
+  margin-left: 0;
+  margin-right: 0;
 }
 </style>

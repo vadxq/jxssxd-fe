@@ -19,7 +19,7 @@
       </b-row>
       <b-row>
         <b-col>
-          <b-button block @click="getMoreList()" variant="outline-danger">更多</b-button>
+          <b-button v-if="whcpList.length >= 10" block @click="getMoreList()" variant="outline-danger">更多</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -34,21 +34,21 @@ export default {
   data () {
     return {
       whcpList: [
-        {
-          id: 111,
-          name: 'sfhjashdksadjhasjd',
-          content: '111'
-        },
-        {
-          id: 222,
-          name: 'sfhjashdksadjhasjd',
-          content: '111222'
-        },
-        {
-          id: 333,
-          name: 'sfhjashdksadjhasjd',
-          content: '111222333'
-        }
+        // {
+        //   id: 111,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '111'
+        // },
+        // {
+        //   id: 222,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '111222'
+        // },
+        // {
+        //   id: 333,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '111222333'
+        // }
       ],
       content: '',
       title: '',
@@ -76,14 +76,14 @@ export default {
       }
     },
     async getMoreList () {
-      // let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=3`)
-      // if (res.data.status) {
-      //   this.whcpList = this.whcpList.concat(res.data.data)
-      //   if (this.whcpList.length === 10 * this.page) {
-      //     this.page += 1
-      //   }
-      // }
-      this.whcpList = this.whcpList.concat(this.whcpList)
+      let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=3`)
+      if (res.data.status) {
+        this.whcpList = this.whcpList.concat(res.data.data)
+        if (this.whcpList.length === 10 * this.page) {
+          this.page += 1
+        }
+      }
+      // this.whcpList = this.whcpList.concat(this.whcpList)
     }
   },
   mounted () {

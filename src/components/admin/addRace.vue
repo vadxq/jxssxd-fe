@@ -10,7 +10,7 @@
     <b-row>
       <b-col>
         <b-input-group prepend="封面图链接：" >
-          <b-form-input v-model="msg.img"/>
+          <b-form-input v-model="msg.cover_url"/>
         </b-input-group>
       </b-col>
     </b-row>
@@ -47,15 +47,15 @@ export default {
     return {
       editContent: '',
       options: {
-        1: 'pdf',
-        2: '视频',
-        3: 'B站视频'
+        pdf: 'pdf',
+        视频: '视频'
+        // B站视频: 'B站视频'
       },
       msg: {
         title: '',
         url: '',
-        category: 1,
-        img: ''
+        category: 'pdf',
+        cover_url: ''
       },
       title: '',
       content: ''
@@ -78,9 +78,10 @@ export default {
     },
     async pushRace () {
       this.msg.content = this.editContent
-      this.msg.category = Number(this.msg.category)
+      // this.msg.category = Number(this.msg.category)
       let errMsg = 0
       let msg = this.msg
+      console.log(msg)
       Object.values(msg).map(e => {
         if (e === '') {
           errMsg += 1
@@ -95,7 +96,7 @@ export default {
           sec: 5
         })
       } else {
-        let res = await this.$axios.post('/api/admin/contset', this.msg)
+        let res = await this.$axios.post('/api/admin/contest', this.msg)
         if (res.data.status) {
           this.$store.commit('changAlert', {
             msg: '更新成功！',
@@ -120,5 +121,7 @@ export default {
 <style scoped>
 .row {
   margin-bottom: 0.6rem;
+  margin-left: 0;
+  margin-right: 0;
 }
 </style>

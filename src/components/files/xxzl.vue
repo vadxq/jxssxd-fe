@@ -34,21 +34,21 @@ export default {
   data () {
     return {
       xxzlList: [
-        {
-          id: 11,
-          name: 'sfhjashdksadjhasjd',
-          content: '11'
-        },
-        {
-          id: 22,
-          name: 'sfhjashdksadjhasjd',
-          content: '1122'
-        },
-        {
-          id: 33,
-          name: 'sfhjashdksadjhasjd',
-          content: '112233'
-        }
+        // {
+        //   id: 11,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '11'
+        // },
+        // {
+        //   id: 22,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '1122'
+        // },
+        // {
+        //   id: 33,
+        //   name: 'sfhjashdksadjhasjd',
+        //   content: '112233'
+        // }
       ],
       content: '',
       title: '',
@@ -76,14 +76,14 @@ export default {
       }
     },
     async getMoreList () {
-      // let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=2`)
-      // if (res.data.status) {
-      //   this.xxzlList = this.xxzlList.concat(res.data.data)
-      //   if (this.xxzlList.length === 10 * this.page) {
-      //     this.page += 1
-      //   }
-      // }
-      this.xxzlList = this.xxzlList.concat(this.xxzlList)
+      let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=2`)
+      if (res.data.status) {
+        this.xxzlList = this.xxzlList.concat(res.data.data)
+        if (this.xxzlList.length === 10 * this.page) {
+          this.page += 1
+        }
+      }
+      // this.xxzlList = this.xxzlList.concat(this.xxzlList)
     }
   },
   mounted () {

@@ -19,7 +19,7 @@
       </b-row>
       <b-row>
         <b-col>
-          <b-button block @click="getMoreList()" variant="outline-danger">更多</b-button>
+          <b-button v-if="sxdwjList.length >= 10" block @click="getMoreList()" variant="outline-danger">更多</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -34,61 +34,6 @@ export default {
   data () {
     return {
       sxdwjList: [
-        {
-          id: 1,
-          name: 'sfhjashdksadjhasjd',
-          content: '1'
-        },
-        {
-          id: 2,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 3,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 4,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 2121,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 5,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 211111,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 6,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 21,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 22,
-          name: 'sfhjashdksadjhasjd',
-          content: '12'
-        },
-        {
-          id: 31,
-          name: 'sfhjashdksadjhasjd',
-          content: '123'
-        }
       ],
       content: '',
       title: '',
@@ -116,14 +61,14 @@ export default {
       }
     },
     async getMoreList () {
-      // let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=1`)
-      // if (res.data.status) {
-      //   this.sxdwjList = this.sxdwjList.concat(res.data.data)
-      //   if (this.sxdwjList.length === 10 * this.page) {
-      //     this.page += 1
-      //   }
-      // }
-      this.sxdwjList = this.sxdwjList.concat(this.sxdwjList)
+      let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=1`)
+      if (res.data.status) {
+        this.sxdwjList = this.sxdwjList.concat(res.data.data)
+        if (this.sxdwjList.length === 10 * this.page) {
+          this.page += 1
+        }
+      }
+      // this.sxdwjList = this.sxdwjList.concat(this.sxdwjList)
     }
   },
   mounted () {

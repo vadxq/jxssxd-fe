@@ -7,8 +7,8 @@
         </b-list-group-item>
         <b-collapse :id="'raceid' + item.id" class="mt-2">
           <p>{{item.content}}</p>
-          <img :src=item.img >
-          <p>类型：<span>{{item.type}}</span></p>
+          <img :src=item.cover_url >
+          <p>类型：<span>{{item.category}}</span></p>
           <p>URL：{{item.url}}</p>
           <p>
             <b-button v-b-modal.raceModal @click="changeRaceId(item.id, item.title)"  variant="outline-danger" class="m-1">删除</b-button>
@@ -16,7 +16,7 @@
         </b-collapse>
       </div>
       <p class="more-p">
-        <b-button block @click="getMoreList()" variant="outline-danger">更多</b-button>
+        <b-button v-if="raceList.length >= 10" block @click="getMoreList()" variant="outline-danger">更多</b-button>
 
       </p>
     </b-list-group>
@@ -35,31 +35,31 @@ export default {
   data () {
     return {
       raceList: [
-        {
-          id: 111,
-          title: 'pdf实例',
-          content: 'sdksjdsjdlsad',
-          img: 'sssssss',
-          url: 'https://qnimg.vadxq.com/demo/pdf/demo.pdf',
-          type: 'pdf'
-        },
-        {
-          id: 222,
-          title: '视频实例（B站视频实例）',
-          content: 'sdksjdsjdlsad',
-          img: 'sssssss',
-          url:
-            '<iframe src="//player.bilibili.com/player.html?aid=44211901&cid=77441895&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
-          type: 'bzhan'
-        },
-        {
-          id: 333,
-          title: '视频实例（自身视频）',
-          content: 'sdksjdsjdlsad',
-          img: 'sssssss',
-          url: 'http://www.w3school.com.cn/i/movie.mp4',
-          type: 'mp4'
-        }
+        // {
+        //   id: 111,
+        //   title: 'pdf实例',
+        //   content: 'sdksjdsjdlsad',
+        //   img: 'sssssss',
+        //   url: 'https://qnimg.vadxq.com/demo/pdf/demo.pdf',
+        //   type: 'pdf'
+        // },
+        // {
+        //   id: 222,
+        //   title: '视频实例（B站视频实例）',
+        //   content: 'sdksjdsjdlsad',
+        //   img: 'sssssss',
+        //   url:
+        //     '<iframe src="//player.bilibili.com/player.html?aid=44211901&cid=77441895&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
+        //   type: 'bzhan'
+        // },
+        // {
+        //   id: 333,
+        //   title: '视频实例（自身视频）',
+        //   content: 'sdksjdsjdlsad',
+        //   img: 'sssssss',
+        //   url: 'http://www.w3school.com.cn/i/movie.mp4',
+        //   type: 'mp4'
+        // }
       ],
       activeId: null,
       activeTitle: null
@@ -86,14 +86,14 @@ export default {
       }
     },
     async getMoreList () {
-      // let res = await this.$axios.get(`/api/contest?page=${this.page}&size=10`)
-      // if (res.data.status) {
-      //   this.raceList = this.raceList.concat(res.data.data)
-      //   if (this.raceList.length === 10 * this.page) {
-      //     this.page += 1
-      //   }
-      // }
-      this.raceList = this.raceList.concat(this.raceList)
+      let res = await this.$axios.get(`/api/contest?page=${this.page}&size=10`)
+      if (res.data.status) {
+        this.raceList = this.raceList.concat(res.data.data)
+        if (this.raceList.length === 10 * this.page) {
+          this.page += 1
+        }
+      }
+      // this.raceList = this.raceList.concat(this.raceList)
     },
     async delRace () {
       let res = await this.$axios.delete(`/api/admin/contest/${this.activeId}`)
@@ -112,6 +112,9 @@ export default {
         })
       }
     }
+  },
+  mounted () {
+    this.getFirList()
   }
 }
 </script>

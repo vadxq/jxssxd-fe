@@ -129,7 +129,7 @@
           </b-col>
         </b-row>
 
-        <b-row v-if="zwOpt == 0">
+        <b-row v-if="zwOpt == '大队辅导员'">
           <b-col>
             <b-input-group prepend="少先队辅导员人数：" >
               <b-input  v-model="msg.fdyrs"  />
@@ -187,19 +187,19 @@ export default {
       dismissCountDown: 0,
       errMsg: '',
       options: {
-        0: '男',
-        1: '女'
+        男: '男',
+        女: '女'
       },
       zwOptions: {
-        0: '大队辅导员',
-        1: '中队辅导员',
-        2: '其他'
+        大队辅导员: '大队辅导员',
+        中队辅导员: '中队辅导员',
+        其他: '其他'
       },
       xlOptions: {
-        0: '研究生',
-        1: '本科',
-        2: '专科',
-        3: '其他'
+        研究生: '研究生',
+        本科: '本科',
+        专科: '专科',
+        其他: '其他'
       },
       msg: {
         name: '', // 姓名
@@ -214,7 +214,7 @@ export default {
         gzdw: '', // 工作单位
         lxfs: '', // 联系方式
         dyrs: '', // 队员人数
-        fdyrs: '', // 辅导员人数
+        fdyrs: 0, // 辅导员人数
         kh: '', // 困惑
         sfzh: '' // 身份证
       }
@@ -231,10 +231,10 @@ export default {
       this.msg.dq = this.activityThrCode
       let errMsg = 0
       let msg = this.msg
-      msg.nl = Number(msg.nl)
-      // msg.xb = this.options[ms.xb]
+      msg.fdyrs = Number(msg.fdyrs)
+      // msg.xb = this.options[msg.xb]
       // msg.zw = this.zwOptions[msg.zw]
-      delete msg['fdyrs']
+      // msg.xl = this.xlOptions[msg.xl]
       if (msg.create_time) {
         delete msg['create_time']
       }
@@ -263,6 +263,7 @@ export default {
             status: 1,
             sec: 5
           })
+          this.getInfo()
         } else {
           this.$store.commit('changAlert', {
             msg: '更新失败！',
@@ -278,9 +279,9 @@ export default {
         this.msg = res.data.data
         if (res.data.data.dq) {
           if (res.data.data.dq.length > 6) {
-            this.activityFirCode = res.data.data.qd.slice(0, 2) + '0000000000'
-            this.activitySecCode = this.activityFirCode + res.data.data.qd.slice(2, 4) + '00000000'
-            this.activityThrCode = this.activitySecCode + res.data.data.qd.slice(4, 6) + '000000'
+            this.activityFirCode = res.data.data.dq.slice(0, 2) + '0000000000'
+            this.activitySecCode = res.data.data.dq.slice(0, 4) + '00000000'
+            this.activityThrCode = res.data.data.dq.slice(0, 6) + '000000'
           }
         }
       }

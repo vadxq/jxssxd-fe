@@ -26,7 +26,6 @@
           </b-col>
           <b-col sm="10">
             <b-form-textarea id="textarea1" v-model="content" placeholder="输入要留言的具体内容" rows="5" />
-            <pre class="mt-3">{{ content }}</pre>
           </b-col>
         </b-row>
 

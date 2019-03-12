@@ -7,6 +7,7 @@ axios.defaults.withCredentials = true
 // http请求拦截
 axios.interceptors.request.use(config => {
   config.headers['Authorization'] = localStorage.getItem('token')
+  // config.baseURL = 'https://jxssxd.boot.pw'
   return config
 }, err => {
   // 打印错误
@@ -32,11 +33,11 @@ axios.interceptors.response.use(data => {
   if (error.response.status) {
     switch (error.response.status) {
       case 401:
-        // if (router.app.$route.path !== '/login') {
-        //   router.replace({
-        //     path: '/login?url=' + router.app.$route.path
-        //   })
-        // }
+        if (router.app.$route.path !== '/login') {
+          router.replace({
+            path: '/login?url=' + router.app.$route.path
+          })
+        }
         break
       case 403:
         store.commit('changAlert', {

@@ -13,7 +13,7 @@
       </div>
       <b-card-group deck>
         <b-card
-          :img-src="item.img"
+          :img-src="item.cover_url"
           img-alt="Image"
           img-top
           :footer=item.title
@@ -35,10 +35,10 @@
       </b-row>
     </b-container>
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
-      <div v-if="type==='pdf'">
+      <div v-if="category === 'pdf'">
         <Pdf :url=url />
       </div>
-      <div v-if="type==='bzhan'">
+      <div v-if="category==='bzhan'">
         <b-embed
           type="iframe"
           aspect="16by9"
@@ -46,7 +46,7 @@
           allowfullscreen
         />
       </div>
-      <div v-if="type==='mp4'">
+      <div v-if="category=== '视频'">
         <!-- <b-embed
           type="iframe"
           aspect="16by9"
@@ -65,7 +65,7 @@ import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import Pdf from '@/components/pdf'
 import VideoPlayer from '@/components/video.vue'
-import { raceList } from '../racelist'
+// import { raceList } from '../racelist'
 export default {
   components: {
     Navbar,
@@ -75,10 +75,11 @@ export default {
   },
   data () {
     return {
-      raceList: raceList,
+      // raceList: raceList,
+      raceList: [],
       url: '',
       title: '',
-      type: '',
+      category: '',
       postUrl: ''
     }
   },
@@ -86,8 +87,8 @@ export default {
     postCid (e) {
       this.url = e.url
       this.title = e.title
-      this.type = e.type
-      this.postUrl = e.img
+      this.category = e.category
+      this.postUrl = e.cover_url
     },
     async getFirList () {
       let res = await this.$axios.get('/api/contest?page=1&size=10')
@@ -105,14 +106,14 @@ export default {
       }
     },
     async getMoreList () {
-      // let res = await this.$axios.get(`/api/contest?page=${this.page}&size=10`)
-      // if (res.data.status) {
-      //   this.raceList = this.raceList.concat(res.data.data)
-      //   if (this.raceList.length === 10 * this.page) {
-      //     this.page += 1
-      //   }
-      // }
-      this.raceList = this.raceList.concat(this.raceList)
+      let res = await this.$axios.get(`/api/contest?page=${this.page}&size=10`)
+      if (res.data.status) {
+        this.raceList = this.raceList.concat(res.data.data)
+        if (this.raceList.length === 10 * this.page) {
+          this.page += 1
+        }
+      }
+      // this.raceList = this.raceList.concat(this.raceList)
     },
     async getInfo () {
       let res = await this.$axios.get('/api/user/info')
@@ -120,13 +121,14 @@ export default {
         // return
       } else {
         this.$router.replace({
-          path: '/login?url=#/race'
+          path: '/login?url=/race'
         })
       }
     }
   },
   mounted () {
     this.getInfo()
+    this.getFirList()
   }
 }
 </script>
@@ -144,7 +146,7 @@ export default {
   padding-right: 0px;
   padding-left: 0px;
   /* background-color: rgb(246, 41, 20); */
-  min-height: 87vh;
+  min-height: 85vh;
   width: 100vw;
 }
 .item:first-child {

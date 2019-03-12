@@ -14,29 +14,18 @@
       </b-row>
 
         <b-row>
-          <b-card no-body>
-            <b-tabs card v-model="tabIndex">
-              <b-tab title="说课大赛" :title-link-class="linkClass(0)">
-                <Race/>
-              </b-tab>
-              <b-tab title="少先队文件" :title-link-class="linkClass(1)">
-                <Sxdwj />
-              </b-tab>
-              <b-tab title="学习资料" :title-link-class="linkClass(2)">
-                <Xxzl />
-              </b-tab>
-              <b-tab title="文化产品" :title-link-class="linkClass(3)">
-                <Whcp />
-              </b-tab>
-              <b-tab title="添加说课大赛" :title-link-class="linkClass(4)">
-                <AddRace />
-              </b-tab>
-              <b-tab title="添加资料文件" :title-link-class="linkClass(5)">
-                <AddZl />
-              </b-tab>
-            </b-tabs>
-          </b-card>
+          <div class="tab">
+            <router-link to="/admin/race">说课大赛</router-link>
+            <router-link to="/admin/sxdwj">少先队文件</router-link>
+            <router-link to="/admin/xxzl">学习资料</router-link>
+            <router-link to="/admin/whcp">文化产品</router-link>
+            <router-link to="/admin/addrace">添加说课大赛</router-link>
+            <router-link to="/admin/addzl">添加资料文件</router-link>
+          </div>
 
+          <div class="tabIndex">
+            <router-view />
+          </div>
         </b-row>
     </b-container>
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
@@ -92,7 +81,7 @@ export default {
         return ['bg-light', 'text-info']
       }
     },
-    async getFeed () {
+    async getUserList () {
       window.location.href = '/api/admin/user/excel?token=' + localStorage.getItem('token')
       // let res = await this.$axios.get('/api/admin/user/excel?token=' + localStorage.getItem('token'))
       // if (!res.data.status) {
@@ -103,7 +92,7 @@ export default {
       //   })
       // }
     },
-    async getUserList () {
+    async getFeed () {
       window.location.href = '/api/admin/feedback/excel?token=' + localStorage.getItem('token')
       // let res = await this.$axios.get('/api/admin/feedback/excel?token=' + localStorage.getItem('token'))
       // if (!res.data.status) {
@@ -152,4 +141,29 @@ section {
   outline: none;
 }
 
+.tab {
+  padding: 1rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+.tab a {
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  margin: 0rem 0.3rem;
+  padding: 0.35rem;
+  display: inline-block;
+}
+
+.tabIndex {
+  width: 100%;
+  padding: 0.2rem;
+  /* margin: 0.25rem; */
+}
+.router-link-active {
+  background-color: #007bff !important;
+  border-color: #dee2e6 #dee2e6 #fff;
+  color: #f8f9fa !important;
+}
 </style>

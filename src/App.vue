@@ -55,6 +55,13 @@ export default {
     countDownChanged (sec) {
       this.errStatus.sec = sec
       this.suctStatus.sec = sec
+      setTimeout(() => {
+        this.$store.state.alert = {
+          status: 0,
+          msg: '',
+          sec: 0
+        }
+      }, 5000)
     }
   }
 }
@@ -72,8 +79,8 @@ export default {
   padding: 0.2rem 1.25rem;
 }
 .sucBox, .errBox {
+  /* float: left; */
   position: absolute;
-  float: left;
   z-index: 1000;
   width: 100%;
   top: 0rem;

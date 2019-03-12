@@ -47,7 +47,7 @@ export default {
       msg: {
         name: '',
         url: '',
-        type: 0
+        category: 1
       }
     }
   },

@@ -113,7 +113,20 @@ export default {
       //   }
       // }
       this.raceList = this.raceList.concat(this.raceList)
+    },
+    async getInfo () {
+      let res = await this.$axios.get('/api/user/info')
+      if (res.data.status) {
+        // return
+      } else {
+        this.$router.replace({
+          path: '/login?url=#/race'
+        })
+      }
     }
+  },
+  mounted () {
+    this.getInfo()
   }
 }
 </script>

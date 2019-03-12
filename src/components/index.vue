@@ -40,11 +40,16 @@
       </b-row>
       <b-row align-v="center" align-h="center">
         <b-col cols="6">
-          <a  target='_blank' href="http://hdk.k618.cn/">
+          <!-- <a  target='_blank' href="http://hdk.k618.cn/">
             <div>
               课程建设
             </div>
-          </a>
+          </a> -->
+          <router-link to="/files/xxzl">
+            <div>
+              课程建设
+            </div>
+          </router-link>
         </b-col>
         <b-col cols="6" >
           <router-link v-b-modal.modal-tshd to="/">

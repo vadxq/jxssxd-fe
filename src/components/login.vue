@@ -28,7 +28,6 @@
             v-model="password"
             trim
             type="password"
-            @blur="getPassState()"
             :state="passState"
             aria-describedby="passWordFeedback"
             placeholder="请输入密码"
@@ -191,6 +190,7 @@ export default {
       if (this.isSendCode === false && this.countdown <= 0) {
         if (this.username) {
           try {
+            this.listenCode()
             const response = await this.$axios.post('/api/user/sms', {
               phone: this.username
             })
@@ -218,7 +218,6 @@ export default {
             sec: 5
           })
         }
-        this.listenCode()
       }
     },
     // 倒计时
@@ -249,30 +248,23 @@ export default {
       // this.$router.push('/me?username=111111&name=张三&part=少年部&zw=部委')
       if (this.forgetPassShow) { // 忘记密码，验证码登录
         if (this.username && this.verycode) {
-          try {
-            const response = await this.$axios.post('/api/user/login', {
-              phone: this.username,
-              code: this.verycode,
-              type: this.sms
-            })
-            // if (response.statu)
-            console.log(response)
-            if (response.data.status) {
-              localStorage.setItem('token', response.data.data)
-              localStorage.setItem('isLogin', true)
-              localStorage.setItem('username', this.username)
-              // localStorage.setItem('name', this.name)
-              this.$router.push(`/me`)
-            } else {
-              this.$store.commit('changAlert', {
-                msg: '账号或验证码错误！',
-                status: 2,
-                sec: 5
-              })
-            }
-          } catch (error) {
+          const response = await this.$axios.post('/api/user/login', {
+            phone: this.username,
+            code: this.verycode,
+            type: 'sms'
+          })
+          // if (response.statu)
+          console.log(response)
+          if (response.data.status) {
+            localStorage.setItem('token', response.data.data)
+            localStorage.setItem('isLogin', true)
+            localStorage.setItem('username', this.username)
+            this.getBack()
+            // localStorage.setItem('name', this.name)
+            // this.$router.push(`/me`)
+          } else {
             this.$store.commit('changAlert', {
-              msg: '请求失败！',
+              msg: '账号或验证码错误！',
               status: 2,
               sec: 5
             })
@@ -286,27 +278,20 @@ export default {
         }
       } else { // 密码登录
         if (this.username && this.password) {
-          try {
-            const response = await this.$axios.post('/api/user/login', {
-              phone: this.username,
-              password: this.password,
-              type: this.password
-            })
-            console.log(response)
-            if (response.data.status) {
-              localStorage.setItem('token', response.data.data)
-              localStorage.setItem('isLogin', true)
-              localStorage.setItem('username', this.username)
-            } else {
-              this.$store.commit('changAlert', {
-                msg: '账号或密码错误！',
-                status: 2,
-                sec: 5
-              })
-            }
-          } catch (error) {
+          const response = await this.$axios.post('/api/user/login', {
+            phone: this.username,
+            password: this.password,
+            type: 'password'
+          })
+          console.log(response)
+          if (response.data.status) {
+            localStorage.setItem('token', response.data.data)
+            localStorage.setItem('isLogin', true)
+            localStorage.setItem('username', this.username)
+            this.getBack()
+          } else {
             this.$store.commit('changAlert', {
-              msg: '请求失败！',
+              msg: '账号或密码错误！',
               status: 2,
               sec: 5
             })
@@ -319,6 +304,20 @@ export default {
           })
         }
       }
+    },
+    // 回到之前访问页面
+    getBack () {
+      if (this.$route.query.hasOwnProperty('url')) {
+        this.$router.replace({
+          path: this.$route.query.url
+        })
+      } else {
+        this.$router.push('/')
+      }
+
+      // window.history.length > 1
+      //   ? this.$router.go(-1)
+      //   : this.$router.push('/')
     }
   }
 }

@@ -85,6 +85,9 @@ export default {
       // }
       this.whcpList = this.whcpList.concat(this.whcpList)
     }
+  },
+  mounted () {
+    this.getFirList()
   }
 }
 </script>

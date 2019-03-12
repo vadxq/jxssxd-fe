@@ -227,12 +227,23 @@ export default {
   },
   methods: {
     async pushLeave () {
-      this.msg.qd = this.activityThrCode
+      // delete msg['qd']
+      this.msg.dq = this.activityThrCode
       let errMsg = 0
       let msg = this.msg
+      msg.nl = Number(msg.nl)
+      // msg.xb = this.options[ms.xb]
+      // msg.zw = this.zwOptions[msg.zw]
       delete msg['fdyrs']
+      if (msg.create_time) {
+        delete msg['create_time']
+      }
+      if (msg.id) {
+        delete msg['id']
+      }
+      delete msg['is_admin']
       Object.values(msg).map(e => {
-        if (e === '') {
+        if (e === '' || e === null) {
           errMsg += 1
         }
         console.log(e)
@@ -265,10 +276,12 @@ export default {
       let res = await this.$axios.get('/api/user/info')
       if (res.data.status) {
         this.msg = res.data.data
-        if (res.data.data.dq.length > 6) {
-          this.activityFirCode = res.data.data.qd.slice(0, 2)
-          this.activitySecCode = res.data.data.qd.slice(2, 4)
-          this.activityThrCode = res.data.data.qd.slice(4, 6)
+        if (res.data.data.dq) {
+          if (res.data.data.dq.length > 6) {
+            this.activityFirCode = res.data.data.qd.slice(0, 2) + '0000000000'
+            this.activitySecCode = this.activityFirCode + res.data.data.qd.slice(2, 4) + '00000000'
+            this.activityThrCode = this.activitySecCode + res.data.data.qd.slice(4, 6) + '000000'
+          }
         }
       }
     },

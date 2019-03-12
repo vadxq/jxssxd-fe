@@ -125,6 +125,9 @@ export default {
       // }
       this.sxdwjList = this.sxdwjList.concat(this.sxdwjList)
     }
+  },
+  mounted () {
+    this.getFirList()
   }
 }
 </script>

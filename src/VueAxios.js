@@ -28,12 +28,15 @@ axios.interceptors.response.use(data => {
   // return data
 }, error => {
   console.log(error)
+  console.log(router.app.$route.path)
   if (error.response.status) {
     switch (error.response.status) {
       case 401:
-        router.replace({
-          path: '/login'
-        })
+        if (router.app.$route.path !== '/login') {
+          router.replace({
+            path: '/login?url=' + router.app.$route.path
+          })
+        }
         break
       case 403:
         store.commit('changAlert', {

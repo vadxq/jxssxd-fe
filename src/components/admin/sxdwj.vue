@@ -20,7 +20,7 @@
 
       </p>
     </b-list-group>
-    <b-modal id="raceModal" scrollable :title="activeTitle" hide-footer>
+    <b-modal ref="raceModal" id="raceModal" scrollable :title="activeTitle" hide-footer>
       <b-button class="mt-3" variant="outline-danger" block @click="delRace">确定删除</b-button>
     </b-modal>
   </section>
@@ -97,6 +97,7 @@ export default {
           status: 1,
           sec: 5
         })
+        this.$refs.raceModal.hide()
       } else {
         this.$store.commit('changAlert', {
           msg: '删除失败，请稍后再试！',

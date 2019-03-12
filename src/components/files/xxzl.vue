@@ -85,6 +85,9 @@ export default {
       // }
       this.xxzlList = this.xxzlList.concat(this.xxzlList)
     }
+  },
+  mounted () {
+    this.getFirList()
   }
 }
 </script>

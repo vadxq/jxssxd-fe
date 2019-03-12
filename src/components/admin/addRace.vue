@@ -3,7 +3,7 @@
     <b-row>
       <b-col>
         <b-input-group prepend="标题：" >
-          <b-form-input v-model="msg.name"/>
+          <b-form-input v-model="msg.title"/>
         </b-input-group>
       </b-col>
     </b-row>
@@ -17,7 +17,7 @@
     <b-row>
       <b-col>
         <b-input-group prepend="类型：" >
-          <b-form-select v-model="msg.type" :options="options"/>
+          <b-form-select v-model="msg.category" :options="options"/>
         </b-input-group>
       </b-col>
     </b-row>
@@ -47,22 +47,24 @@ export default {
     return {
       editContent: '',
       options: {
-        0: 'pdf',
-        1: '视频',
-        2: 'B站视频'
+        1: 'pdf',
+        2: '视频',
+        3: 'B站视频'
       },
       msg: {
-        name: '',
+        title: '',
         url: '',
-        type: 0,
+        category: 1,
         img: ''
-      }
+      },
+      title: '',
+      content: ''
     }
   },
   methods: {
     postCid (e) {
       this.content = e.content
-      this.title = e.name
+      this.title = e.title
     },
     linkClass (idx) {
       if (this.tabIndex === idx) {
@@ -76,6 +78,7 @@ export default {
     },
     async pushRace () {
       this.msg.content = this.editContent
+      this.msg.category = Number(this.msg.category)
       let errMsg = 0
       let msg = this.msg
       Object.values(msg).map(e => {
@@ -92,7 +95,7 @@ export default {
           sec: 5
         })
       } else {
-        let res = await this.$axios.put('/api/admin/contset', this.msg)
+        let res = await this.$axios.post('/api/admin/contset', this.msg)
         if (res.data.status) {
           this.$store.commit('changAlert', {
             msg: '更新成功！',

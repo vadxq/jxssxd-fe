@@ -46,7 +46,8 @@ export default {
   methods: {
     editLogin () {
       this.isLogin = false
-      this.$router.push('/me')
+      localStorage.removeItem('token')
+      this.$router.push('/login?url=#/me')
     },
     async getInfo () {
       let res = await this.$axios.get('/api/user/info')

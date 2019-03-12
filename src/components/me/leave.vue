@@ -63,7 +63,7 @@ export default {
           sec: 5
         })
       } else {
-        let res = await this.$axios.post('/api/user/leave', {
+        let res = await this.$axios.post('/api/feedback', {
           title: this.title,
           content: this.content
         })

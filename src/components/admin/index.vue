@@ -2,47 +2,16 @@
   <section>
     <b-container fluid class="files-container">
       <b-row  class="outputData">
-        <b-col cols="6">
-          <span>欢迎进入管理界面~</span>
+        <b-col cols="3">
+          <span>欢迎~</span>
         </b-col>
-        <b-col cols="6">
-          <b-button variant="outline-danger">导出用户数据</b-button>
+        <b-col cols="5">
+          <b-button variant="outline-danger" @click="getUserList()">导出用户数据</b-button>
+        </b-col>
+        <b-col cols="4">
+          <b-button variant="outline-danger" @click="getFeed()">导出留言</b-button>
         </b-col>
       </b-row>
-      <!-- <b-row align-content="center" class="adminAdd">
-        <b-col cols="6">
-          <b-button v-b-toggle.collapse1 variant="outline-danger" class="m-1">添加管理员</b-button>
-        </b-col>
-        <b-col cols="6">
-          <b-button v-b-toggle.collapse2 variant="outline-danger" class="m-1">删除管理员</b-button>
-        </b-col>
-      </b-row> -->
-      <!-- 添加管理员 -->
-      <!-- <b-collapse id="collapse1" class="mt-2">
-        <b-card>
-          <p class="card-text">添加管理员</p>
-          <b-input
-            v-model="addUsername"
-            trim
-            type="number"
-            :state="addUsernameState"
-            placeholder="输入用户手机号" />
-          <b-button variant="outline-danger" size="sm">添加</b-button>
-        </b-card>
-      </b-collapse> -->
-      <!-- 删除管理员 -->
-      <!-- <b-collapse id="collapse2" class="mt-2">
-        <b-card>
-          <p class="card-text">删除管理员</p>
-          <b-input
-            v-model="delUsername"
-            trim
-            type="number"
-            :state="delUsernameState"
-            placeholder="输入用户手机号" />
-          <b-button variant="outline-danger" size="sm">删除</b-button>
-        </b-card>
-      </b-collapse> -->
 
         <b-row>
           <b-card no-body>
@@ -122,6 +91,28 @@ export default {
       } else {
         return ['bg-light', 'text-info']
       }
+    },
+    async getFeed () {
+      window.location.href = '/api/admin/user/excel?token=' + localStorage.getItem('token')
+      // let res = await this.$axios.get('/api/admin/user/excel?token=' + localStorage.getItem('token'))
+      // if (!res.data.status) {
+      //   this.$store.commit('changAlert', {
+      //     msg: '获取失败，请稍后再试！',
+      //     status: 2,
+      //     sec: 5
+      //   })
+      // }
+    },
+    async getUserList () {
+      window.location.href = '/api/admin/feedback/excel?token=' + localStorage.getItem('token')
+      // let res = await this.$axios.get('/api/admin/feedback/excel?token=' + localStorage.getItem('token'))
+      // if (!res.data.status) {
+      //   this.$store.commit('changAlert', {
+      //     msg: '获取失败，请稍后再试！',
+      //     status: 2,
+      //     sec: 5
+      //   })
+      // }
     }
   },
   mounted () {

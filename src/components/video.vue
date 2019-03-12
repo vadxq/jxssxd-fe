@@ -40,4 +40,7 @@ export default {
   video::-webkit-media-controls-panel {
     width: calc(100% + 35px);
   }
+  video {
+    width: 100%;
+  }
 </style>

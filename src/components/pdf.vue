@@ -9,11 +9,14 @@
 export default {
   data () {
     return {
-      allUrl: ''
+      // allUrl: ''
     }
   },
-  mounted () {
-    this.allUrl = '/static/pdfjs/web/viewer.html?file=' + this.url
+  computed: {
+    allUrl () {
+      return '/static/pdfjs/web/viewer.html?file=' + this.url
+    }
+    // this.allUrl = '/static/pdfjs/web/viewer.html?file=' + this.url
   },
   props: ['url']
 }

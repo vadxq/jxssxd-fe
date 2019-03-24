@@ -6,7 +6,8 @@
           {{item.name}}
         </b-list-group-item>
         <b-collapse :id="'raceid' + item.id" class="mt-2">
-          <p>{{item.content}}</p>
+          <!-- <p>{{item.content}}</p> -->
+          <p v-if="item.content">{{item.content}}</p>
           <img  :src=item.cover >
           <p>类型：<span>{{item.file_type}}</span></p>
           <p>URL：{{item.url}}</p>

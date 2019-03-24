@@ -3,15 +3,16 @@
     <b-list-group>
       <div v-for="item in sxdList" :key="item.id">
         <b-list-group-item v-b-toggle="'raceid' +item.id" >
-          {{item.title}}
+          {{item.name}}
         </b-list-group-item>
         <b-collapse :id="'raceid' + item.id" class="mt-2">
-          <p>{{item.content}}</p>
-          <!-- <img :src=item.img > -->
-          <!-- <p>类型：<span>{{item.type}}</span></p> -->
+          <!-- <p>{{item.content}}</p> -->
+          <p v-if="item.content">{{item.content}}</p>
+          <img  :src=item.cover >
+          <p>类型：<span>{{item.file_type}}</span></p>
           <p>URL：{{item.url}}</p>
           <p>
-            <b-button v-b-modal.raceModal @click="changeRaceId(item.id, item.title)"  variant="outline-danger" class="m-1">删除</b-button>
+            <b-button v-b-modal.raceModal @click="changeRaceId(item.id, item.name)"  variant="outline-danger" class="m-1">删除</b-button>
           </p>
         </b-collapse>
       </div>
@@ -117,5 +118,12 @@ export default {
 <style scoped>
 .more-p {
   margin-top: 1rem;
+}
+.mt-2 p {
+  max-width: 90vw;
+  word-break: break-all;
+}
+.mt-2 img {
+  max-width: 90vw;
 }
 </style>

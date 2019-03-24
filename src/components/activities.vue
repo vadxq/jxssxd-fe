@@ -30,7 +30,7 @@
       </b-card-group> -->
       <b-row>
         <b-col>
-          <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in sxdwjList" :cid="item.id">
+          <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in raceList" :cid="item.id">
             {{item.name}}
           </div>
         </b-col>
@@ -44,7 +44,8 @@
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
       <div v-if="type === 1">
         <Pdf :url=url />
-        <div v-html="content">
+        <!-- <div v-html="content"> -->
+          <div v-if="content" v-html="content">
         </div>
       </div>
       <div v-if="type === 2">
@@ -55,7 +56,8 @@
           allowfullscreen
         /> -->
         <VideoPlayer :poster=postUrl :videosrc=url :autoplay='false'/>
-        <div v-html="content">
+        <!-- <div v-html="content"> -->
+          <div v-if="content" v-html="content">
         </div>
       </div>
       <div v-if="type === 3">
@@ -63,14 +65,16 @@
           Your browser does not support the <code>audio</code> element.
           <source :src="url" type="audio/mp3">
         </audio>
-        <div v-html="content">
+        <!-- <div v-html="content"> -->
+          <div v-if="content" v-html="content">
         </div>
       </div>
       <div v-if="type === 4">
         <div class="imgMedia">
           <img :src=url />
         </div>
-        <div v-html="content">
+        <!-- <div v-html="content"> -->
+          <div v-if="content" v-html="content">
         </div>
       </div>
       <div v-if="type === 5">
@@ -80,7 +84,8 @@
           :src=url
           allowfullscreen
         />
-        <div v-html="content">
+        <!-- <div v-html="content"> -->
+          <div v-if="content" v-html="content">
         </div>
         <!-- <VideoPlayer :poster=postUrl :videosrc=url :autoplay='false'/> -->
       </div>
@@ -120,7 +125,9 @@ export default {
       this.title = e.name
       this.type = e.file_type
       this.postUrl = e.cover
-      this.content = e.content
+      if (e.content === null) {
+        this.content = false
+      }
     },
     async getFirList () {
       let res = await this.$axios.get('/api/content?page=0&size=10&category=3')

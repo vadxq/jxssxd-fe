@@ -56,7 +56,8 @@ export default {
         // }
       ],
       activeId: null,
-      activeTitle: null
+      activeTitle: null,
+      page: 1
     }
   },
   methods: {
@@ -65,7 +66,7 @@ export default {
       this.activeTitle = title
     },
     async getFirList () {
-      let res = await this.$axios.get('/api/data/?page=1&size=5&category=1')
+      let res = await this.$axios.get('api/content?page=0&size=10&category=2')
       if (res.data.status) {
         this.sxdList = res.data.data
         if (this.sxdList.length === 10) {
@@ -80,7 +81,7 @@ export default {
       }
     },
     async getMoreList () {
-      let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=1`)
+      let res = await this.$axios.get(`/api/content?page=${this.page - 1}&size=10&category=2`)
       if (res.data.status) {
         this.sxdList = this.sxdList.concat(res.data.data)
         if (this.sxdList.length === 10 * this.page) {
@@ -90,7 +91,7 @@ export default {
       // this.sxdList = this.sxdList.concat(this.sxdList)
     },
     async delRace () {
-      let res = await this.$axios.delete(`/api/admin/data/${this.activeId}`)
+      let res = await this.$axios.delete(`/api/admin/content/${this.activeId}`)
       if (res.data.status) {
         this.$store.commit('changAlert', {
           msg: '删除成功！',
@@ -106,6 +107,9 @@ export default {
         })
       }
     }
+  },
+  mounted () {
+    this.getFirList()
   }
 }
 </script>

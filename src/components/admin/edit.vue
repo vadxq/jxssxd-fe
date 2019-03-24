@@ -19,4 +19,7 @@ export default {
 </script>
 
 <style scoped>
+.content {
+  margin: 0 auto;
+}
 </style>

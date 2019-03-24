@@ -15,11 +15,11 @@
 
         <b-row>
           <div class="tab">
-            <router-link to="/admin/race">说课大赛</router-link>
-            <router-link to="/admin/sxdwj">少先队文件</router-link>
-            <router-link to="/admin/xxzl">学习资料</router-link>
+            <router-link to="/admin/race">视频学习</router-link>
+            <router-link to="/admin/sxdwj">重要文件</router-link>
+            <router-link to="/admin/xxzl">活动案例</router-link>
             <router-link to="/admin/whcp">文化产品</router-link>
-            <router-link to="/admin/addrace">添加说课大赛</router-link>
+            <!-- <router-link to="/admin/addrace">添加说课大赛</router-link> -->
             <router-link to="/admin/addzl">添加资料文件</router-link>
           </div>
 
@@ -39,7 +39,7 @@ import Race from '@/components/admin/race'
 import Sxdwj from '@/components/admin/sxdwj'
 import Whcp from '@/components/admin/whcp'
 import Xxzl from '@/components/admin/xxzl'
-import AddRace from '@/components/admin/addRace'
+// import AddRace from '@/components/admin/addRace'
 import AddZl from '@/components/admin/addZl'
 export default {
   components: {
@@ -47,7 +47,7 @@ export default {
     Sxdwj,
     Whcp,
     Xxzl,
-    AddRace,
+    // AddRace,
     AddZl
   },
   data () {
@@ -144,6 +144,7 @@ section {
 .tab {
   padding: 1rem 1.25rem;
   margin-bottom: 0;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }

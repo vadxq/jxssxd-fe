@@ -1,22 +1,22 @@
 <template>
   <section class="race">
-    <Navbar navText="视频学习" />
+    <Navbar navText="活动案例" />
     <b-container fluid class="files-container">
       <div class="sxd-nav">
         <router-link to="/">
-          <img src="../assets/index.png">
+          <img src="@/assets/index.png">
           首页
         </router-link>
         <span> / </span>
-        <img src="../assets/race.png">
-          <span>视频学习</span>
+        <img src="@/assets/xxzlfiles.png">
+          <span>活动案例</span>
       </div>
-      <b-card-group deck>
+      <!-- <b-card-group deck>
         <b-card
-          :img-src="item.cover"
+          :img-src="item.cover_url"
           img-alt="Image"
           img-top
-          :footer=item.name
+          :footer=item.title
           footer-tag="footer"
           @click="postCid(item)"
           :key=item.id
@@ -27,7 +27,14 @@
           no-body
         >
         </b-card>
-      </b-card-group>
+      </b-card-group> -->
+      <b-row>
+        <b-col>
+          <div @click="postCid(item)" :key=item.id class="item" v-b-modal.modal-scrollable v-for="item in sxdwjList" :cid="item.id">
+            {{item.name}}
+          </div>
+        </b-col>
+      </b-row>
       <b-row>
         <b-col>
           <b-button v-if="raceList.length >= 10" block @click="getMoreList()" variant="outline-danger">更多</b-button>
@@ -35,11 +42,6 @@
       </b-row>
     </b-container>
     <b-modal id="modal-scrollable" scrollable :title="title" ok-only ok-title="阅读完毕">
-      <!-- 1: 'pdf',
-        2: 'MP4视频',
-        3: 'MP3音频',
-        4: '图片',
-        5: 'B站视频' -->
       <div v-if="type === 1">
         <Pdf :url=url />
         <div v-html="content">
@@ -103,54 +105,7 @@ export default {
   data () {
     return {
       // raceList: raceList,
-      raceList: [
-        // {
-        //   id: 111,
-        //   name: 'pdf实例',
-        //   content: '',
-        //   cover: '',
-        //   url: 'https://qnimg.vadxq.com/demo/pdf/demo.pdf',
-        //   file_type: 1, // pdf
-        //   category: 1
-        // },
-        // {
-        //   id: 222,
-        //   name: '视频实例（B站视频实例）',
-        //   content: '',
-        //   cover: 'https://13879158849.oss-cn-hongkong.aliyuncs.com/%E7%AC%AC%E5%9B%9B%E6%9D%BF%E5%9D%97-%E6%96%87%E5%8C%96%E4%BA%A7%E5%93%81/2018%E5%B9%B4%E5%85%AD%E4%B8%80%E4%B9%A0%E8%BF%91%E5%B9%B3%E6%80%BB%E4%B9%A6%E8%AE%B0%E5%AF%B9%E5%B0%91%E5%B9%B4%E5%84%BF%E7%AB%A5%E5%B8%8C%E6%9C%9B%E5%92%8C%E8%A6%81%E6%B1%82.jpg',
-        //   url:
-        //     '<iframe src="//player.bilibili.com/player.html?aid=44211901&cid=77441895&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
-        //   file_type: 5,
-        //   category: 1
-        // },
-        // {
-        //   id: 333,
-        //   name: '视频实例（自身视频）',
-        //   content: '',
-        //   cover: 'https://13879158849.oss-cn-hongkong.aliyuncs.com/%E7%AC%AC%E5%9B%9B%E6%9D%BF%E5%9D%97-%E6%96%87%E5%8C%96%E4%BA%A7%E5%93%81/2018%E5%B9%B4%E5%85%AD%E4%B8%80%E4%B9%A0%E8%BF%91%E5%B9%B3%E6%80%BB%E4%B9%A6%E8%AE%B0%E5%AF%B9%E5%B0%91%E5%B9%B4%E5%84%BF%E7%AB%A5%E5%B8%8C%E6%9C%9B%E5%92%8C%E8%A6%81%E6%B1%82.jpg',
-        //   url: 'http://www.w3school.com.cn/i/movie.mp4',
-        //   file_type: 2,
-        //   category: 1
-        // },
-        // {
-        //   id: 44,
-        //   name: 'MP3实例',
-        //   content: '',
-        //   cover: 'https://13879158849.oss-cn-hongkong.aliyuncs.com/%E7%AC%AC%E5%9B%9B%E6%9D%BF%E5%9D%97-%E6%96%87%E5%8C%96%E4%BA%A7%E5%93%81/2018%E5%B9%B4%E5%85%AD%E4%B8%80%E4%B9%A0%E8%BF%91%E5%B9%B3%E6%80%BB%E4%B9%A6%E8%AE%B0%E5%AF%B9%E5%B0%91%E5%B9%B4%E5%84%BF%E7%AB%A5%E5%B8%8C%E6%9C%9B%E5%92%8C%E8%A6%81%E6%B1%82.jpg',
-        //   url: 'http://www.w3school.com.cn/i/movie.mp4',
-        //   file_type: 3, // mp3
-        //   category: 1
-        // },
-        // {
-        //   id: 444,
-        //   name: '图片实例',
-        //   content: '',
-        //   cover: 'https://13879158849.oss-cn-hongkong.aliyuncs.com/%E7%AC%AC%E5%9B%9B%E6%9D%BF%E5%9D%97-%E6%96%87%E5%8C%96%E4%BA%A7%E5%93%81/2018%E5%B9%B4%E5%85%AD%E4%B8%80%E4%B9%A0%E8%BF%91%E5%B9%B3%E6%80%BB%E4%B9%A6%E8%AE%B0%E5%AF%B9%E5%B0%91%E5%B9%B4%E5%84%BF%E7%AB%A5%E5%B8%8C%E6%9C%9B%E5%92%8C%E8%A6%81%E6%B1%82.jpg',
-        //   url: 'https://13879158849.oss-cn-hongkong.aliyuncs.com/%E7%AC%AC%E5%9B%9B%E6%9D%BF%E5%9D%97-%E6%96%87%E5%8C%96%E4%BA%A7%E5%93%81/2018%E5%B9%B4%E5%85%AD%E4%B8%80%E4%B9%A0%E8%BF%91%E5%B9%B3%E6%80%BB%E4%B9%A6%E8%AE%B0%E5%AF%B9%E5%B0%91%E5%B9%B4%E5%84%BF%E7%AB%A5%E5%B8%8C%E6%9C%9B%E5%92%8C%E8%A6%81%E6%B1%82.jpg',
-        //   file_type: 4, // 图片
-        //   category: 1
-        // }
-      ],
+      raceList: [],
       url: '',
       title: '',
       type: '',
@@ -168,7 +123,7 @@ export default {
       this.content = e.content
     },
     async getFirList () {
-      let res = await this.$axios.get('/api/content?page=0&size=10&category=1')
+      let res = await this.$axios.get('/api/content?page=0&size=10&category=3')
       if (res.data.status) {
         this.raceList = res.data.data
         if (this.raceList.length === 10) {
@@ -183,7 +138,7 @@ export default {
       }
     },
     async getMoreList () {
-      let res = await this.$axios.get(`/api/content?page=${this.page - 1}&size=10`)
+      let res = await this.$axios.get(`/api/content?page=${this.page - 1}&size=10&category=3`)
       if (res.data.status) {
         this.raceList = this.raceList.concat(res.data.data)
         if (this.raceList.length === 10 * this.page) {
@@ -273,6 +228,9 @@ export default {
 }
 .row {
   margin: 15px 0px;
+}
+video {
+  width: 100%;
 }
 video {
   width: 100%;

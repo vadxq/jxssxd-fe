@@ -9,8 +9,22 @@
     </b-row>
     <b-row>
       <b-col>
-        <b-input-group prepend="类型：" >
-          <b-form-select v-model="msg.type" :options="options"/>
+        <b-input-group prepend="发布频道：" >
+          <b-form-select v-model="msg.category" :options="channeloptions"/>
+        </b-input-group>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-input-group prepend="封面图链接：" >
+          <b-form-input v-model="msg.cover"/>
+        </b-input-group>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-input-group prepend="附件类型：" >
+          <b-form-select v-model="msg.file_type" :options="options"/>
         </b-input-group>
       </b-col>
     </b-row>
@@ -40,14 +54,24 @@ export default {
     return {
       editContent: '',
       options: {
-        1: '少先队文件',
-        2: '学习资料',
-        3: '文化产品'
+        1: 'pdf',
+        2: 'MP4视频',
+        3: 'MP3音频',
+        4: '图片',
+        5: 'B站视频'
+      },
+      channeloptions: {
+        1: '视频学习',
+        2: '重要文件',
+        3: '活动案例',
+        4: '文化产品'
       },
       msg: {
         name: '',
         url: '',
-        category: 1
+        category: 1,
+        cover: null,
+        file_type: 1
       }
     }
   },
@@ -67,9 +91,20 @@ export default {
       this.editContent = e
     },
     async pushRace () {
-      this.msg.content = this.editContent
+      if (this.editContent === '' || this.editContent === '请输入文章内容') {
+        this.msg.content = null
+      } else {
+        this.msg.content = this.editContent
+      }
+      this.msg.file_type = Number(this.msg.file_type)
+      this.msg.category = Number(this.msg.category)
       let errMsg = 0
-      let msg = this.msg
+      let msg = {
+        name: this.msg.name,
+        url: this.msg.url,
+        category: this.msg.category,
+        file_type: this.msg.file_type
+      }
       Object.values(msg).map(e => {
         if (e === '') {
           errMsg += 1
@@ -84,7 +119,8 @@ export default {
           sec: 5
         })
       } else {
-        let res = await this.$axios.post('/api/admin/data', this.msg)
+        console.log(this.msg)
+        let res = await this.$axios.post('/api/admin/content', this.msg)
         if (res.data.status) {
           this.$store.commit('changAlert', {
             msg: '更新成功！',

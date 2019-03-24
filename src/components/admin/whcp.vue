@@ -3,13 +3,15 @@
     <b-list-group>
       <div v-for="item in sxdList" :key="item.id">
         <b-list-group-item v-b-toggle="'raceid' +item.id" >
-          {{item.title}}
+          {{item.name}}
         </b-list-group-item>
         <b-collapse :id="'raceid' + item.id" class="mt-2">
           <p>{{item.content}}</p>
+          <img  :src=item.cover >
+          <p>类型：<span>{{item.file_type}}</span></p>
           <p>URL：{{item.url}}</p>
           <p>
-            <b-button v-b-modal.raceModal @click="changeRaceId(item.id, item.title)"  variant="outline-danger" class="m-1">删除</b-button>
+            <b-button v-b-modal.raceModal @click="changeRaceId(item.id, item.name)"  variant="outline-danger" class="m-1">删除</b-button>
           </p>
         </b-collapse>
       </div>
@@ -54,7 +56,8 @@ export default {
         // }
       ],
       activeId: null,
-      activeTitle: null
+      activeTitle: null,
+      page: 1
     }
   },
   methods: {
@@ -63,7 +66,7 @@ export default {
       this.activeTitle = title
     },
     async getFirList () {
-      let res = await this.$axios.get('/api/data/?page=1&size=5&category=3')
+      let res = await this.$axios.get('/api/content?page=0&size=10&category=4')
       if (res.data.status) {
         this.sxdList = res.data.data
         if (this.sxdList.length === 10) {
@@ -78,7 +81,7 @@ export default {
       }
     },
     async getMoreList () {
-      let res = await this.$axios.get(`/api/data/?page=${this.page}&size=10&category=3`)
+      let res = await this.$axios.get(`/api/content?page=${this.page - 1}&size=10&category=4`)
       if (res.data.status) {
         this.sxdList = this.sxdList.concat(res.data.data)
         if (this.sxdList.length === 10 * this.page) {
@@ -88,7 +91,7 @@ export default {
       // this.sxdList = this.sxdList.concat(this.sxdList)
     },
     async delRace () {
-      let res = await this.$axios.delete(`/api/admin/data/${this.activeId}`)
+      let res = await this.$axios.delete(`/api/admin/content/${this.activeId}`)
       if (res.data.status) {
         this.$store.commit('changAlert', {
           msg: '删除成功！',
@@ -104,6 +107,9 @@ export default {
         })
       }
     }
+  },
+  mounted () {
+    this.getFirList()
   }
 }
 </script>
@@ -111,5 +117,12 @@ export default {
 <style scoped>
 .more-p {
   margin-top: 1rem;
+}
+.mt-2 p {
+  max-width: 90vw;
+  word-break: break-all;
+}
+.mt-2 img {
+  max-width: 90vw;
 }
 </style>

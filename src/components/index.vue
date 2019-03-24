@@ -19,9 +19,9 @@
     <b-container fluid  class="bv-example-row  text-center">
       <b-row align-v="center" align-h="center">
         <b-col cols="6">
-          <router-link to="/race">
+          <router-link to="/video">
             <div>
-              风采大赛
+              视频学习
             </div>
           </router-link>
         </b-col>
@@ -31,9 +31,9 @@
               阵地建设
             </div>
           </a> -->
-          <router-link to="/files/sxdwj">
+          <router-link to="/files">
             <div>
-              阵地建设
+              重要文件
             </div>
           </router-link>
         </b-col>
@@ -45,24 +45,24 @@
               课程建设
             </div>
           </a> -->
-          <router-link to="/files/xxzl">
+          <router-link to="/activities">
             <div>
-              课程建设
+              活动案例
             </div>
           </router-link>
         </b-col>
         <b-col cols="6" >
-          <router-link v-b-modal.modal-tshd to="/">
+          <router-link to="/cultural">
             <div>
-              特色活动
+              文化产品
             </div>
           </router-link>
         </b-col>
       </b-row>
     </b-container>
-    <b-modal id="modal-tshd" title="特色活动" ok-only ok-title="期待">
+    <!-- <b-modal id="modal-tshd" title="特色活动" ok-only ok-title="期待">
       <P>正在开发中，敬请期待</P>
-    </b-modal>
+    </b-modal> -->
     <div class="footer-box">
       <Footer/>
     </div>
@@ -86,7 +86,7 @@ export default {
 
 <style scoped>
 section {
-  overflow: hidden;
+  overflow: auto;
   height: 100vh;
   background-color: rgb(246, 41, 20);
 

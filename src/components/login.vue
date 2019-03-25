@@ -52,6 +52,16 @@
             不能为空哟~
           </p> -->
         </div>
+        <div v-if="regIsTrue||forgetPassShow">
+          <Verify
+            fontSize="1rem"
+            height="2.5rem"
+            @success="changeVery(true)"
+            @error="changeVery(false)"
+            :type="1"
+            @blur="checkVery()"
+            width="100%"></Verify>
+        </div>
         <div v-if="regIsTrue||forgetPassShow" class="veryCode">
           <p>验证码：</p>
           <!-- <label for="varyWord">验证码：</label> -->
@@ -96,11 +106,13 @@
 <script>
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
+import Verify from '@/components/Verify'
 
 export default {
   components: {
     Navbar,
-    Footer
+    Footer,
+    Verify
   },
   data () {
     return {
@@ -113,7 +125,8 @@ export default {
       verycode: '',
       countdown: 0,
       isSendCode: false,
-      forgetPassShow: false
+      forgetPassShow: false,
+      imgVery: false
     }
   },
   computed: {
@@ -148,6 +161,17 @@ export default {
       } else {
         this.regIsTrue = true
         this.forgetPassShow = false
+      }
+    },
+    checkVery() {
+      console.log(this.$refs.instance)
+    },
+    changeVery(e) {
+      console.log(new Date())
+      if (e) {
+        this.imgVery = true
+      } else {
+        this.imgVery = false
       }
     },
     // 注册
@@ -187,37 +211,45 @@ export default {
     },
     // 发送验证码
     async sendCode () {
-      if (this.isSendCode === false && this.countdown <= 0) {
-        if (this.username) {
-          try {
-            this.listenCode()
-            const response = await this.$axios.post('/api/user/sms', {
-              phone: this.username
-            })
-            // const response = await this.$axios.get('http://115.159.83.44:7192/api/info')
-            if (response.data.status) {
-              console.log('suc')
-            } else {
+      if (this.imgVery) {
+        if (this.isSendCode === false && this.countdown <= 0) {
+          if (this.username) {
+            try {
+              this.listenCode()
+              const response = await this.$axios.post('/api/user/sms', {
+                phone: this.username
+              })
+              // const response = await this.$axios.get('http://115.159.83.44:7192/api/info')
+              if (response.data.status) {
+                console.log('suc')
+              } else {
+                this.$store.commit('changAlert', {
+                  msg: '发送失败！',
+                  status: 2,
+                  sec: 5
+                })
+              }
+            } catch (error) {
               this.$store.commit('changAlert', {
-                msg: '发送失败！',
+                msg: '请求失败',
                 status: 2,
                 sec: 5
               })
             }
-          } catch (error) {
+          } else {
             this.$store.commit('changAlert', {
-              msg: '请求失败',
+              msg: '请填写手机号！',
               status: 2,
               sec: 5
             })
           }
-        } else {
-          this.$store.commit('changAlert', {
-            msg: '请填写手机号！',
-            status: 2,
-            sec: 5
-          })
         }
+      } else {
+        this.$store.commit('changAlert', {
+          msg: '请进行图形验证是否是机器人！',
+          status: 2,
+          sec: 5
+        })
       }
     },
     // 倒计时
@@ -413,5 +445,8 @@ export default {
 }
 .regButton {
   margin-top: 1.5rem;
+}
+.verify-btn {
+  display: none;
 }
 </style>

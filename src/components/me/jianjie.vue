@@ -15,7 +15,7 @@
           <div>江西省少工委官方微信</div>
         </b-row>
         <b-row class="info-img">
-          <div><img src="" alt="">微信图片</div>
+          <div><img src="/static/weixin.jpg" alt=""></div>
         </b-row>
         <b-row class="info-footer">
           <div>江西省少工委官方QQ群：187122274</div>
@@ -72,8 +72,16 @@ export default {
   /* color: #fff; */
 }
 .info {
-  margin-left: 7vw;
   margin-top: 2rem;
+}
+.info .row {
+  margin-right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.info-img img {
+  width: 60vw;
 }
 .info-footer {
   margin-top: 2.5rem;

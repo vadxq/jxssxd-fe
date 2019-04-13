@@ -34,6 +34,7 @@
   </div>
 </template>
 <script type="text/babel">
+/* eslint-disable */
 /**
  * Verify 验证码组件
  * @description 分发验证码使用
@@ -286,7 +287,7 @@ export default {
 .verify-btn {
   width: 200px;
   height: 30px;
-  background-color: #dc3545;
+  background-color: #57B5C1;
   color: #ffffff;
   border: none;
   margin-top: 10px;

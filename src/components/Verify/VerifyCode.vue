@@ -11,7 +11,7 @@
                     'color': containerColor
                 }">
             <!-- 显示字符串 -->
-            <span :style="code.style" v-for="code in codeShow">
+            <span :style="code.style" v-for="code in codeShow" :key="code">
                 {{code.char || code}}
             </span>
         </div>
@@ -24,6 +24,7 @@
     </div>
 </template>
 <script type="text/babel">
+/* eslint-disable */
     /**
      * Code
      * @description 常规的图片文字识别或者数字计算

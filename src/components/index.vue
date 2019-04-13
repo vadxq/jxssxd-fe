@@ -5,7 +5,7 @@
 
     <div class="ggdiv">
       <b-carousel id="carousel-fade" style="text-shadow: 0px 0px 2px #000" fade  >
-        <b-carousel-slide  img-src="./static/bg.png"/>
+        <b-carousel-slide  img-src="./static/bg-min.png"/>
         <!-- <b-carousel-slide caption="Second Slide" img-src="https://picsum.photos/1024/480/?image=12"/> -->
         <!-- <b-carousel-slide caption="Third Slide" img-src="https://picsum.photos/1024/480/?image=22"/> -->
       </b-carousel>
@@ -88,7 +88,7 @@ export default {
 section {
   overflow: auto;
   height: 100vh;
-  background-color: rgb(246, 41, 20);
+  /* background-color: rgb(246, 41, 20); */
 
 }
 .nav-index {
@@ -124,7 +124,8 @@ section {
   justify-content: center;
   align-items: center;
   color: #fff;
-  background-color: rgb(242,55,50);
+  /* background-color: rgb(242,55,50); */
+  background-color: #57B5C1;
   box-shadow: 0px 0px 1.5px rgba(0,0,0,0.6);
   border-radius: 1.5vw;
 }
@@ -150,5 +151,12 @@ section {
   padding: 0.2rem 1.25rem;
     margin-bottom: 0.3rem;
   /* height: 3rem; */
+}
+
+.bv-example-row {
+  margin-top: 1rem;
+}
+.ggdiv img {
+  height: 32vh;
 }
 </style>

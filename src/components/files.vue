@@ -5,7 +5,7 @@
     <b-container fluid class="files-container">
       <div class="sxd-nav">
         <router-link to="/">
-          <img src="@/assets/files.png">
+          <img src="@/assets/index.png">
           首页
         </router-link>
         <span> /</span>
@@ -189,11 +189,12 @@ export default {
   width: 1.2rem;
 }
 .sxd-nav a img {
-  margin: 0rem 0 0 0.3rem;
-  width: 1.4rem;
+  margin: -0.3rem 0 0 0.3rem;
+  width: 1.1rem;
 }
 .sxd-nav a {
-  color: rgb(246, 41, 20);
+  /* color: rgb(246, 41, 20); */
+  color: #57B5C1;
 }
 .sxd-nav span {
   display: inline-flex;

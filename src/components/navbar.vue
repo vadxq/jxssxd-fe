@@ -39,7 +39,8 @@ export default {
 .nav-index {
   /* background-color: rgb(246, 41, 20); */
   border-bottom: solid 1px rgba(0, 0, 0, 0.3);
-  background-color: rgb(246, 41, 20);
+  /* background-color: rgb(246, 41, 20); */
+  background-color: #57B5C1;
 
 }
 .navbar {
@@ -55,7 +56,10 @@ export default {
   align-items: center;
 }
 .navbar-brand img {
-  width: 1.3rem;
+  width: 1.5rem;
+}
+.navbar-brand span {
+  text-indent: 0.4rem;
 }
 .navbar-nav,
 .nav-item-dropdown,

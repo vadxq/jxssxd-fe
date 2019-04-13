@@ -106,7 +106,8 @@ export default {
   width: 1.5rem;
 }
 .sxd-nav a {
-  color: rgb(246, 41, 20);
+  /* color: rgb(246, 41, 20); */
+  color: #57B5C1;
 }
 .sxd-nav span {
   display: inline-flex;

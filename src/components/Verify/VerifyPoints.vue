@@ -48,6 +48,7 @@
     </div>
 </template>
 <script type="text/babel">
+/* eslint-disable */
     /**
      * VerifyPoints
      * @description 点选

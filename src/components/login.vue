@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <Navbar navText="登录/注册" />
+  <section v-bind:class="[ regIsTrue||forgetPassShow ? 'registerbg': 'loginbg' ]">
+    <!-- <Navbar navText="登录/注册" /> -->
     <b-container fluid class="files-container">
       <div class="formgroup">
         <div>
@@ -75,7 +75,7 @@
             aria-describedby="varyWordFeedback"
             placeholder="请输入验证码"
           />
-            <b-button @click="sendCode()" v-show="!isSendCode"  for="varyWord" variant="danger" >验证码</b-button>
+            <b-button @click="sendCode()" v-show="!isSendCode"  for="varyWord" variant="info" >验证码</b-button>
             <b-button v-show="isSendCode"  for="varyWord" disabled >{{ codeState }}S</b-button>
           </div>
           <!-- <p v-show="!verycodeState" id="varyWordFeedback" class="feedBackP">
@@ -89,10 +89,10 @@
           <span @click="forgetPass()">密码登录</span>
         </div>
         <div>
-          <b-button @click="login()" v-if="!regIsTrue" block variant="outline-danger">登录</b-button>
+          <b-button @click="login()" v-if="!regIsTrue" block variant="info">登录</b-button>
           <b-button v-if="!regIsTrue" @click="regTrue()" block variant="secondary">注册</b-button>
           <b-button class="regButton" v-if="regIsTrue" @click="register()" block variant="secondary">注册</b-button>
-          <b-button v-if="regIsTrue" @click="regTrue()" block variant="outline-danger">返回登录</b-button>
+          <b-button v-if="regIsTrue" @click="regTrue()" block variant="info">返回登录</b-button>
         </div>
       </div>
     </b-container>
@@ -126,7 +126,8 @@ export default {
       countdown: 0,
       isSendCode: false,
       forgetPassShow: false,
-      imgVery: false
+      imgVery: false,
+      autoBackground: 'url(/static/login-min.png)'
     }
   },
   computed: {
@@ -163,10 +164,10 @@ export default {
         this.forgetPassShow = false
       }
     },
-    checkVery() {
+    checkVery () {
       console.log(this.$refs.instance)
     },
-    changeVery(e) {
+    changeVery (e) {
       console.log(new Date())
       if (e) {
         this.imgVery = true
@@ -363,7 +364,7 @@ export default {
   /* background-color: rgb(246, 41, 20); */
   width: 100vw;
   /* color: #fff; */
-  min-height: 87vh;
+  /* min-height: 87vh; */
   align-items: center;
   justify-content: center;
   display: flex;
@@ -390,7 +391,8 @@ export default {
 }
 
 .formgroup {
-  height: 73vh;
+  /* height: 73vh; */
+  margin-top: 21vh;
 }
 .formgroup div p {
   margin-bottom: 0.5rem;
@@ -448,5 +450,42 @@ export default {
 }
 .verify-btn {
   display: none;
+}
+.was-validated .form-control:invalid, .form-control.is-invalid {
+  border-color: #57B5C1;
+}
+.btn-info {
+  background-color: #57B5C1;
+  border-color: #57B5C1;
+}
+.loginbg, .registerbg {
+  position: relative;
+  min-height: 100vh;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: top;
+  color: #57B5C1;
+}
+.loginbg {
+  background-image: url('/static/loginbg-min.png');
+}
+.registerbg {
+  background-image: url('/static/register-min.png');
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  color: #fff!important;
+}
+.verify-code {
+  color: #57B5C1;
+}
+.verify-btn {
+  background-color: #57B5C1;
+}
+@media only screen and (min-width: 600px) {
+  .formgroup {
+    margin-top: 17rem;
+  }
 }
 </style>

@@ -1,3 +1,4 @@
+/* eslint-disable */
 export function resetSize(vm) {
     var img_width, img_height, bar_width, bar_height;	//图片的宽度、高度，移动条的宽度、高度
 

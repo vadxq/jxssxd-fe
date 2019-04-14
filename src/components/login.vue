@@ -483,6 +483,10 @@ footer {
 .verify-btn {
   background-color: #57B5C1;
 }
+
+.was-validated .form-control:invalid, .form-control.is-invalid {
+  background-image: none;
+}
 @media only screen and (min-width: 600px) {
   .formgroup {
     margin-top: 17rem;

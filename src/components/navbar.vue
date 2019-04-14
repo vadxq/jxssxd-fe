@@ -38,7 +38,7 @@ export default {
 <style scoped>
 .nav-index {
   /* background-color: rgb(246, 41, 20); */
-  border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+  border-bottom: solid 1px rgba(87, 181, 193, 0.6);
   /* background-color: rgb(246, 41, 20); */
   background-color: #57B5C1;
 
@@ -70,6 +70,6 @@ export default {
   min-width: 5rem!important;
 }
 .router-link-exact-active {
-  color: rgb(231, 190, 188) !important;
+  color: #007B93 !important;
 }
 </style>
